@@ -20,7 +20,15 @@ $routes->get('register/step2', 'AuthController::registerStep2');
 $routes->post('register/step2', 'AuthController::saveStep2');
 
 // ============================================
+// DASHBOARD CLIENT
+// ============================================
+$routes->get('dashboard', 'DashboardController::index', ['filter' => 'auth']);
+$routes->get('dashboard/select-objectifs', 'DashboardController::selectObjectifs', ['filter' => 'auth']);
+$routes->post('dashboard/save-objectifs', 'DashboardController::saveObjectifs', ['filter' => 'auth']);
+$routes->post('dashboard/validate-code', 'DashboardController::validateCode', ['filter' => 'auth']);
+$routes->post('dashboard/buy-gold', 'DashboardController::buyGold', ['filter' => 'auth']);
+
+// ============================================
 // PAGE ACCUEIL (à faire plus tard)
 // ============================================
 $routes->get('/', 'Home::index');
-$routes->get('dashboard', 'Home::dashboard', ['filter' => 'auth']);
