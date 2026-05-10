@@ -426,3 +426,33 @@ in APPPATH/Views/regimes/browse.php on line 334.
 10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 07:40:34 --> ErrorException: Undefined array key "id_user_utilisateur"
+[Method: GET, Route: admin/codes]
+in APPPATH/Views/admin/codes.php on line 122.
+ 1 APPPATH/Views/admin/codes.php(122): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/admin/codes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(132): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->codes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 07:40:38 --> ErrorException: Undefined array key "id_user_utilisateur"
+[Method: GET, Route: admin/codes]
+in APPPATH/Views/admin/codes.php on line 122.
+ 1 APPPATH/Views/admin/codes.php(122): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/admin/codes.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/AdminController.php(132): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\AdminController->codes()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')

@@ -33,13 +33,16 @@ class AuthController extends BaseController
 
         $user = $this->userModel->where('username', $username)->first();
 
-        if ($user && password_verify($password, $user['password_hash'])) {
+        // ⚠️ DEVELOPMENT ONLY: Comparaison simple des mots de passe en clair
+        // En production, utiliser password_verify() avec hashs bcrypt
+        if ($user && $password === $user['password_hash']) {
             // Connexion réussie
             session()->set([
                 'user_id'    => $user['id'],
                 'username'   => $user['username'],
                 'email'      => $user['email'],
                 'role'       => $user['role'],
+                'nom'        => $user['nom'],
                 'isLoggedIn' => true,
             ]);
 
@@ -90,7 +93,7 @@ class AuthController extends BaseController
             'temp_email'    => $this->request->getPost('email'),
             'temp_username' => $this->request->getPost('username'),
             'temp_genre'    => $this->request->getPost('genre'),
-            'temp_password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'temp_password' => $this->request->getPost('password'), // ⚠️ DEVELOPMENT: mot de passe en clair
         ]);
 
         return redirect()->to('/register/step2')->with('success', 'Étape 1 complétée !');

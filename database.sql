@@ -151,14 +151,14 @@ INSERT INTO objectifs (nom, description) VALUES
 -- INSERT: USERS (5 utilisateurs)
 -- ============================================
 INSERT INTO users (nom, email, username, password_hash, genre, taille, poids, solde_portefeuille, is_gold, role, created_at, updated_at) VALUES
--- Admin
-('Admin System', 'admin@RegimeApp.com', 'admin', '$2y$10$8ToVhYCKljtTEDHd7eZi.OnC6jQmtFmM.f70wSS15HrYA9D4vIA1q', 'M', 1.75, 80.00, 1000.00, FALSE, 'admin', NOW(), NOW()),
+-- Admin (password: admin123)
+('Admin System', 'admin@RegimeApp.com', 'admin', 'admin123', 'M', 1.75, 80.00, 1000.00, FALSE, 'admin', NOW(), NOW()),
 
 -- Users
-('Alice Martin', 'alice@email.com', 'alice', '$2y$10$XBYZ.WiRfK5nOofsXlG.xevO5SI.Hi3NMSv7SHuc928nczUGNCEx.', 'F', 1.65, 72.00, 50.00, FALSE, 'user', NOW(), NOW()),
-('Bob Dupont', 'bob@email.com', 'bob', '$2y$10$XBYZ.WiRfK5nOofsXlG.xevO5SI.Hi3NMSv7SHuc928nczUGNCEx.', 'M', 1.80, 95.00, 75.00, TRUE, 'user', NOW(), NOW()),
-('Carole Michel', 'carole@email.com', 'carole', '$2y$10$XBYZ.WiRfK5nOofsXlG.xevO5SI.Hi3NMSv7SHuc928nczUGNCEx.', 'F', 1.60, 68.00, 100.00, FALSE, 'user', NOW(), NOW()),
-('David Leblanc', 'david@email.com', 'david', '$2y$10$XBYZ.WiRfK5nOofsXlG.xevO5SI.Hi3NMSv7SHuc928nczUGNCEx.', 'M', 1.78, 110.00, 35.50, TRUE, 'user', NOW(), NOW());
+('Alice Martin', 'alice@email.com', 'alice', 'alice123', 'F', 1.65, 72.00, 50.00, FALSE, 'user', NOW(), NOW()),
+('Bob Dupont', 'bob@email.com', 'bob', 'bob123', 'M', 1.80, 95.00, 75.00, TRUE, 'user', NOW(), NOW()),
+('Carole Michel', 'carole@email.com', 'carole', 'carole123', 'F', 1.60, 68.00, 100.00, FALSE, 'user', NOW(), NOW()),
+('David Leblanc', 'david@email.com', 'david', 'david123', 'M', 1.78, 110.00, 35.50, TRUE, 'user', NOW(), NOW());
 
 -- ============================================
 -- INSERT: REGIMES (5 régimes)

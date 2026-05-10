@@ -29,6 +29,15 @@ $routes->post('dashboard/validate-code', 'DashboardController::validateCode', ['
 $routes->post('dashboard/buy-gold', 'DashboardController::buyGold', ['filter' => 'auth']);
 
 // ============================================
+// ADMIN BACK OFFICE
+// ============================================
+$routes->get('admin', 'AdminController::dashboard', ['filter' => 'auth']);
+$routes->get('admin/users', 'AdminController::users', ['filter' => 'auth']);
+$routes->get('admin/regimes', 'AdminController::regimes', ['filter' => 'auth']);
+$routes->get('admin/activites', 'AdminController::activites', ['filter' => 'auth']);
+$routes->get('admin/codes', 'AdminController::codes', ['filter' => 'auth']);
+
+// ============================================
 // REGIMES
 // ============================================
 $routes->get('regime/browse', 'RegimeController::browse', ['filter' => 'auth']);

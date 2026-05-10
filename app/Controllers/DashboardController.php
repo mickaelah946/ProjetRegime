@@ -29,6 +29,11 @@ class DashboardController extends BaseController
             return redirect()->to('/login')->with('error', 'Veuillez d\'abord vous connecter');
         }
 
+        // Rediriger les admins vers le dashboard admin
+        if (session()->get('role') === 'admin') {
+            return redirect()->to('/admin');
+        }
+
         $userId = session()->get('user_id');
         $user = $this->userModel->find($userId);
 

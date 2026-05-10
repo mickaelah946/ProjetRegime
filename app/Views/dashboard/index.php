@@ -222,7 +222,10 @@
             <div class="navbar-brand">🍽️ RegimeApp</div>
             <div>
                 <span class="text-white me-4">Bienvenue, <?= htmlspecialchars($user['nom']) ?></span>
-                <a href="<?= base_url('logout') ?>" class="btn btn-light btn-sm">Déconnexion</a>
+                <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
+                    <?= csrf_field() ?>
+                    <button type="submit" class="btn btn-light btn-sm" style="border: none; cursor: pointer;">Déconnexion</button>
+                </form>
             </div>
         </div>
     </nav>
@@ -297,10 +300,10 @@
         <!-- SECTION 3: OBJECTIFS -->
         <div class="card">
             <div class="card-header">
-                🎯 Vos Objectifs (<?= count($userObjectifs) ?>/3)
+                🎯 Vos Objectifs
             </div>
             <div class="card-body">
-                <?php if (count($userObjectifs) >= 3): ?>
+                <?php if (count($userObjectifs) >= 1): ?>
                     <div class="objectif-list">
                         <?php foreach ($userObjectifs as $obj): ?>
                             <div class="objectif-item">
@@ -310,8 +313,8 @@
                     </div>
                     <a href="<?= base_url('dashboard/select-objectifs') ?>" class="btn btn-secondary">Modifier</a>
                 <?php else: ?>
-                    <p class="mb-3">Vous devez choisir 3 objectives pour continuer.</p>
-                    <a href="<?= base_url('dashboard/select-objectifs') ?>" class="btn btn-main">Choisir 3 objectifs</a>
+                    <p class="mb-3">Commencez par sélectionner vos objectifs.</p>
+                    <a href="<?= base_url('dashboard/select-objectifs') ?>" class="btn btn-main">Sélectionner un objectif</a>
                 <?php endif; ?>
             </div>
         </div>
