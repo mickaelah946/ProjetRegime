@@ -341,8 +341,10 @@
             </div>
             <div class="card-body">
                 <div class="actions-grid">
-                    <a href="<?= base_url('regime/browse') ?>" class="action-btn">📋 Voir régimes</a>
-                    <a href="<?= base_url('regime/active') ?>" class="action-btn">📊 Mes régimes actifs</a>
+                    <a href="<?= base_url('regime/browse') ?>" class="action-btn">🥗 Voir régimes</a>
+                    <a href="<?= base_url('regime/active') ?>" class="action-btn">📊 Mes régimes</a>
+                    <a href="<?= base_url('activity/browse') ?>" class="action-btn">💪 Voir activités</a>
+                    <a href="<?= base_url('activity/active') ?>" class="action-btn">🏃 Mes activités</a>
                     <a href="#" class="action-btn">✏️ Modifier profil</a>
                     <a href="#" class="action-btn">📥 Exporter PDF</a>
                 </div>

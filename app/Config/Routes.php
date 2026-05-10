@@ -37,6 +37,14 @@ $routes->post('regime/select/(:num)', 'RegimeController::select/$1', ['filter' =
 $routes->post('regime/cancel/(:num)', 'RegimeController::cancel/$1', ['filter' => 'auth']);
 
 // ============================================
+// ACTIVITES
+// ============================================
+$routes->get('activity/browse', 'ActivityController::browse', ['filter' => 'auth']);
+$routes->get('activity/active', 'ActivityController::active', ['filter' => 'auth']);
+$routes->post('activity/select/(:num)', 'ActivityController::select/$1', ['filter' => 'auth']);
+$routes->post('activity/cancel/(:num)', 'ActivityController::cancel/$1', ['filter' => 'auth']);
+
+// ============================================
 // PAGE ACCUEIL
 // ============================================
 $routes->get('/', 'Home::index');

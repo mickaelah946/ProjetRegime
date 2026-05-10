@@ -50,8 +50,9 @@ CREATE TABLE activites_sportives (
     description         TEXT,
     type                ENUM('cardio', 'musculation', 'yoga', 'autre') NOT NULL,
     intensite           ENUM('basse', 'moyenne', 'haute') NOT NULL,
-    duree_recommandee   INT NOT NULL,
+    duree_jours         INT NOT NULL,
     calories_brulees    INT NOT NULL,
+    prix                DECIMAL(8, 2) NOT NULL DEFAULT 0.00,
     created_at          DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at          DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -117,9 +118,10 @@ CREATE TABLE user_activites (
     id                  INT AUTO_INCREMENT PRIMARY KEY,
     user_id             INT NOT NULL,
     activite_id         INT NOT NULL,
-    date_debut          DATETIME,
-    date_fin            DATETIME NULL,
-    frequence           VARCHAR(100),
+    prix_paye           DECIMAL(8, 2) NOT NULL DEFAULT 0.00,
+    date_selection      DATETIME DEFAULT CURRENT_TIMESTAMP,
+    date_fin_prevu      DATETIME,
+    statut              ENUM('actif', 'termine', 'annule') DEFAULT 'actif',
     created_at          DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (activite_id) REFERENCES activites_sportives(id) ON DELETE RESTRICT
@@ -171,12 +173,12 @@ INSERT INTO regimes (nom, description, type, duree_jours, prix, poids_variation_
 -- ============================================
 -- INSERT: ACTIVITES_SPORTIVES (5 activités)
 -- ============================================
-INSERT INTO activites_sportives (nom, description, type, intensite, duree_recommandee, calories_brulees) VALUES
-('Course à Pied', 'Courir régulièrement pour brûler des calories rapidement. Excellente pour le cardio et l\'endurance.', 'cardio', 'haute', 30, 350),
-('Musculation', 'Entraînement progressif pour construire et renforcer la musculature. Idéal pour la tonification.', 'musculation', 'moyenne', 45, 280),
-('Yoga Détente', 'Séances douces de yoga pour améliorer la flexibilité et la sérénité. Excellent pour la récupération.', 'yoga', 'basse', 60, 150),
-('HIIT Training', 'Entraînement intensif par intervalle haute/basse intensité. Très efficace pour brûler des calories en peu de temps.', 'cardio', 'haute', 20, 400),
-('Natation', 'Nage complète et non-traumatisante pour les articulations. Excellent travail cardio et musculaire.', 'cardio', 'moyenne', 45, 320);
+INSERT INTO activites_sportives (nom, description, type, intensite, duree_jours, calories_brulees, prix) VALUES
+('Course à Pied', 'Courir régulièrement pour brûler des calories rapidement. Excellente pour le cardio et l\'endurance.', 'cardio', 'haute', 30, 350, 15.00),
+('Musculation', 'Entraînement progressif pour construire et renforcer la musculature. Idéal pour la tonification.', 'musculation', 'moyenne', 45, 280, 20.00),
+('Yoga Détente', 'Séances douces de yoga pour améliorer la flexibilité et la sérénité. Excellent pour la récupération.', 'yoga', 'basse', 60, 150, 12.00),
+('HIIT Training', 'Entraînement intensif par intervalle haute/basse intensité. Très efficace pour brûler des calories en peu de temps.', 'cardio', 'haute', 20, 400, 25.00),
+('Natation', 'Nage complète et non-traumatisante pour les articulations. Excellent travail cardio et musculaire.', 'cardio', 'moyenne', 45, 320, 18.00);
 
 -- ============================================
 -- INSERT: CODES_PORTEFEUILLE (15 codes)

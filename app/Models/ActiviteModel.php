@@ -11,7 +11,7 @@ class ActiviteModel extends Model
     protected $primaryKey      = 'id';
     protected $useAutoIncrement = true;
     
-    protected $allowedFields = ['nom', 'description', 'type', 'intensite', 'duree_recommandee', 'calories_brulees'];
+    protected $allowedFields = ['nom', 'description', 'type', 'intensite', 'duree_jours', 'calories_brulees', 'prix'];
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -70,10 +70,32 @@ class ActiviteModel extends Model
      */
     public function getUserActivities($userId)
     {
-        return $this->select('activites_sportives.*, user_activites.id as user_activite_id, user_activites.date_debut, user_activites.frequence')
-                    ->join('user_activites', 'user_activites.activite_id = activites_sportives.id')
-                    ->where('user_activites.user_id', $userId)
-                    ->where('user_activites.date_fin', null)
-                    ->findAll();
+        $db = Database::connect();
+        $result = $db->table('activites_sportives')
+                     ->select('activites_sportives.*, user_activites.id as user_activite_id, user_activites.prix_paye, user_activites.date_selection, user_activites.date_fin_prevu, user_activites.statut')
+                     ->join('user_activites', 'user_activites.activite_id = activites_sportives.id')
+                     ->where('user_activites.user_id', $userId)
+                     ->where('user_activites.statut', 'actif')
+                     ->get()
+                     ->getResultArray();
+        
+        return $result ?: [];
+    }
+
+    /**
+     * Vérifier si l'utilisateur a déjà cette activité active
+     */
+    public function hasUserSelectedActivity($userId, $activiteId)
+    {
+        $db = Database::connect();
+        $result = $db->table('user_activites')
+                     ->where('user_id', $userId)
+                     ->where('activite_id', $activiteId)
+                     ->where('statut', 'actif')
+                     ->get()
+                     ->getRowArray();
+        
+        return !empty($result);
     }
 }
+

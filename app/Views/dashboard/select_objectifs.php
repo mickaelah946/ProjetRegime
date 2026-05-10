@@ -136,7 +136,7 @@
     <div class="container-custom">
         <div class="card">
             <div class="card-header">
-                🎯 Sélectionner vos Objectifs (au moins 1)
+                🎯 Sélectionner vos Objectifs
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('error')): ?>
@@ -145,10 +145,6 @@
 
                 <form method="POST" action="<?= base_url('dashboard/save-objectifs') ?>">
                     <?= csrf_field() ?>
-
-                    <div class="count-info" id="countInfo">
-                        Sélectionnez au moins 1 objectif
-                    </div>
 
                     <div id="objectifsContainer">
                         <?php foreach ($objectifs as $objectif): 
@@ -190,17 +186,12 @@
         function updateCount() {
             const checkboxes = document.querySelectorAll('.objectif-checkbox:checked');
             const count = checkboxes.length;
-            const countInfo = document.getElementById('countInfo');
             const submitBtn = document.getElementById('submitBtn');
 
-            // Update info text
+            // Enable/disable submit button based on selection
             if (count >= 1) {
-                countInfo.textContent = `✓ Vous avez sélectionné ${count} objectif${count > 1 ? 's' : ''}`;
-                countInfo.classList.add('complete');
                 submitBtn.disabled = false;
             } else {
-                countInfo.textContent = 'Sélectionnez au moins 1 objectif';
-                countInfo.classList.remove('complete');
                 submitBtn.disabled = true;
             }
 
