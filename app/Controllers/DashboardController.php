@@ -98,7 +98,7 @@ class DashboardController extends BaseController
             $this->objectifModel->addUserObjectif($userId, (int) $objectifId);
         }
 
-        return redirect()->to('/dashboard')->with('success', 'Objectifs mis à jour !');
+        return redirect()->to('/regime/browse')->with('success', 'Objectifs mis à jour ! Découvrez nos régimes recommandés');
     }
 
     // ============================================

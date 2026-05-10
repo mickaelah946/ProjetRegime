@@ -78,3 +78,351 @@ in APPPATH/Controllers/DashboardController.php on line 133.
  5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
  7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:32:07 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::findAll()
+[Method: GET, Route: regime/browse]
+in APPPATH/Models/RegimeModel.php on line 27.
+ 1 APPPATH/Controllers/RegimeController.php(42): App\Models\RegimeModel->getRecommendedRegimes()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:32:19 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::findAll()
+[Method: GET, Route: regime/browse]
+in APPPATH/Models/RegimeModel.php on line 27.
+ 1 APPPATH/Controllers/RegimeController.php(42): App\Models\RegimeModel->getRecommendedRegimes()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:32:25 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Builder::findAll()
+[Method: GET, Route: regime/browse]
+in APPPATH/Models/RegimeModel.php on line 27.
+ 1 APPPATH/Controllers/RegimeController.php(42): App\Models\RegimeModel->getRecommendedRegimes()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:39:39 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:39:47 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:39:51 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:39:55 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:39:59 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:42:52 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:43:37 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:45:39 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:45:50 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:46:33 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:46:35 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:46:38 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:46:44 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(63): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:05 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:06 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:06 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:14 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:41 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:47 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:52 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:51:56 --> ErrorException: Undefined array key "date_fin_prevu"
+[Method: GET, Route: regime/browse]
+in APPPATH/Views/regimes/browse.php on line 334.
+ 1 APPPATH/Views/regimes/browse.php(334): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/app/Views/regimes/browse.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/RegimeController.php(64): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\RegimeController->browse()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')

@@ -29,6 +29,14 @@ $routes->post('dashboard/validate-code', 'DashboardController::validateCode', ['
 $routes->post('dashboard/buy-gold', 'DashboardController::buyGold', ['filter' => 'auth']);
 
 // ============================================
-// PAGE ACCUEIL (à faire plus tard)
+// REGIMES
+// ============================================
+$routes->get('regime/browse', 'RegimeController::browse', ['filter' => 'auth']);
+$routes->get('regime/active', 'RegimeController::active', ['filter' => 'auth']);
+$routes->post('regime/select/(:num)', 'RegimeController::select/$1', ['filter' => 'auth']);
+$routes->post('regime/cancel/(:num)', 'RegimeController::cancel/$1', ['filter' => 'auth']);
+
+// ============================================
+// PAGE ACCUEIL
 // ============================================
 $routes->get('/', 'Home::index');
