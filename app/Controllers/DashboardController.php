@@ -126,17 +126,20 @@ class DashboardController extends BaseController
 
         if ($codeData['valide'] && $codeData['utilisateur_id'] === null) {
             // Code valide et non utilisé
-            $montant = $codeData['montant'];
+            $montant = (float)$codeData['montant'];
+            $user = $this->userModel->find($userId);
+            $newBalance = $user['solde_portefeuille'] + $montant;
 
             // Ajouter au solde
             $this->userModel->update($userId, [
-                'solde_portefeuille' => \DB::raw("solde_portefeuille + {$montant}")
+                'solde_portefeuille' => $newBalance
             ]);
 
             // Marquer le code comme utilisé
             $this->codeModel->update($codeData['id'], [
                 'utilisateur_id' => $userId,
                 'date_utilisation' => date('Y-m-d H:i:s'),
+                'valide' => false,
             ]);
 
             return redirect()->back()->with('success', "+{$montant}€ ajouté au portefeuille !");
@@ -159,7 +162,7 @@ class DashboardController extends BaseController
         } elseif ($imc < 30) {
             return ['nom' => 'Surpoids', 'couleur' => 'warning', 'emoji' => '🟠'];
         } else {
-            return ['nom' => 'Obèse', 'couleur' => 'danger', 'emoji' => '🔴'];
+            return ['nom' => 'Obese', 'couleur' => 'danger', 'emoji' => '🔴'];
         }
     }
 

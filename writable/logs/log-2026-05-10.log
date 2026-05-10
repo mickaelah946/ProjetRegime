@@ -1,0 +1,80 @@
+CRITICAL - 2026-05-10 06:00:18 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:00:58 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:01:03 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:03:49 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:05:24 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:05:47 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:06:34 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
+CRITICAL - 2026-05-10 06:06:45 --> Error: Class "DB" not found
+[Method: POST, Route: dashboard/validate-code]
+in APPPATH/Controllers/DashboardController.php on line 133.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\DashboardController->validateCode()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 7 SYSTEMPATH/rewrite.php(44): require_once('/home/asus/Documents/s4/systeme d\'information/Bibliotheque/public/index.php')
