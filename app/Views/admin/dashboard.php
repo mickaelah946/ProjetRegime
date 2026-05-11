@@ -302,6 +302,11 @@
                 <div class="menu-title">Codes Promo</div>
                 <div class="menu-description">Créer et gérer les codes portefeuille</div>
             </a>
+            <a href="<?= base_url('admin/cross-tab') ?>" class="menu-card">
+                <div class="menu-icon">📊</div>
+                <div class="menu-title">Tableau Croisé</div>
+                <div class="menu-description">Voir les utilisateurs vs régimes/activités</div>
+            </a>
             <a href="<?= base_url('dashboard') ?>" class="menu-card">
                 <div class="menu-icon">🔄</div>
                 <div class="menu-title">Mode Utilisateur</div>
