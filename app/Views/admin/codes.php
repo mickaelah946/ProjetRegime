@@ -69,6 +69,13 @@
             background: #34495e;
             color: white;
         }
+        .card-form {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
         .badge-valide {
             background: #27ae60;
         }
@@ -94,6 +101,45 @@
 
         <a href="<?= base_url('admin') ?>" class="btn-back">← Retour</a>
 
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+        <?php endif; ?>
+
+        <div class="card-form">
+            <h3 style="margin-bottom: 20px;"><?= isset($editingCode) && $editingCode ? 'Modifier le code' : 'Ajouter un code' ?></h3>
+            <form method="POST" action="<?= base_url('admin/codes/save') ?>" class="row g-3">
+                <?= csrf_field() ?>
+                <input type="hidden" name="id" value="<?= esc($editingCode['id'] ?? '') ?>">
+
+                <div class="col-md-5">
+                    <label class="form-label">Code</label>
+                    <input type="text" name="code" class="form-control" value="<?= esc(old('code', $editingCode['code'] ?? '')) ?>" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Montant (€)</label>
+                    <input type="number" step="0.01" name="montant" class="form-control" value="<?= esc(old('montant', $editingCode['montant'] ?? '')) ?>" required>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <?php $checked = old('valide', isset($editingCode) ? (int) $editingCode['valide'] : 1); ?>
+                    <input type="hidden" name="valide" value="0">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="valide" value="1" id="valideCode" <?= $checked ? 'checked' : '' ?>>
+                        <label class="form-check-label" for="valideCode">Valide</label>
+                    </div>
+                </div>
+                <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-dark"><?= isset($editingCode) && $editingCode ? 'Mettre à jour' : 'Ajouter' ?></button>
+                    <?php if (isset($editingCode) && $editingCode): ?>
+                        <a href="<?= base_url('admin/codes') ?>" class="btn btn-outline-secondary">Annuler</a>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
+
         <div class="table-container">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
@@ -104,6 +150,7 @@
                         <th>Utilisé Par</th>
                         <th>Date Utilisation</th>
                         <th>Date Création</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,8 +166,8 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <?php if ($code['id_user_utilisateur']): ?>
-                                    <small><?= $code['id_user_utilisateur'] ?></small>
+                                <?php if (!empty($code['utilisateur_username'])): ?>
+                                    <small><?= esc($code['utilisateur_username']) ?></small>
                                 <?php else: ?>
                                     <small style="color: #999;">-</small>
                                 <?php endif; ?>
@@ -133,6 +180,13 @@
                                 <?php endif; ?>
                             </td>
                             <td><?= date('d/m/Y', strtotime($code['created_at'])) ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/codes?edit=' . $code['id']) ?>" class="btn btn-sm btn-primary">Modifier</a>
+                                <form method="POST" action="<?= base_url('admin/codes/delete/' . $code['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer ce code ?');">
+                                    <?= csrf_field() ?>
+                                    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

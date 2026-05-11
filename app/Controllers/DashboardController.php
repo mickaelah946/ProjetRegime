@@ -199,4 +199,95 @@ class DashboardController extends BaseController
 
         return redirect()->back()->with('success', 'Option Gold activée ! 15% de remise sur tous les régimes');
     }
+
+    // ============================================
+    // VALIDER UN CODE PORTEFEUILLE (AJAX)
+    // ============================================
+    public function validateCodeAjax()
+    {
+        // Vérifier si c'est une requête AJAX
+        if (!$this->request->isAJAX()) {
+            return $this->response->setStatusCode(400)->setJSON(['error' => 'Requête invalide']);
+        }
+
+        // Vérifier authentification
+        if (!session()->get('isLoggedIn')) {
+            return $this->response->setStatusCode(401)->setJSON(['error' => 'Non authentifié']);
+        }
+
+        $code = trim($this->request->getPost('code'));
+        $userId = session()->get('user_id');
+
+        if (!$code) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Veuillez entrer un code',
+            ]);
+        }
+
+        // Vérifier que le code n'est pas vide
+        if (strlen($code) < 3) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Code trop court',
+            ]);
+        }
+
+        // Chercher le code
+        $codeData = $this->codeModel->where('code', $code)->first();
+
+        if (!$codeData) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Code invalide ou n\'existe pas',
+            ]);
+        }
+
+        // Vérifier l'état du code
+        if (!$codeData['valide']) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Ce code a été désactivé ou est expiré',
+            ]);
+        }
+
+        if ($codeData['utilisateur_id'] !== null) {
+            if ($codeData['utilisateur_id'] == $userId) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'error' => 'Vous avez déjà utilisé ce code',
+                ]);
+            } else {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'error' => 'Ce code a déjà été utilisé par un autre utilisateur',
+                ]);
+            }
+        }
+
+        // Code valide - ajouter les fonds
+        $montant = (float) $codeData['montant'];
+        $user = $this->userModel->find($userId);
+        $newBalance = $user['solde_portefeuille'] + $montant;
+
+        // Mettre à jour le solde
+        $this->userModel->update($userId, [
+            'solde_portefeuille' => $newBalance
+        ]);
+
+        // Marquer le code comme utilisé
+        $this->codeModel->update($codeData['id'], [
+            'utilisateur_id' => $userId,
+            'date_utilisation' => date('Y-m-d H:i:s'),
+            'valide' => false,
+        ]);
+
+        // Retourner succès
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => "+{$montant}€ ajouté à votre portefeuille !",
+            'newBalance' => round($newBalance, 2),
+            'montant' => $montant,
+        ]);
+    }
 }

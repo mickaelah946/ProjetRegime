@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -180,6 +181,28 @@
             background: #c0392b;
             color: white;
         }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
     </style>
 </head>
 <body>
@@ -226,6 +249,33 @@
             <div class="stat-card purple">
                 <div class="stat-label">Revenus Totaux</div>
                 <div class="stat-number"><?= number_format($stats['revenus_total'], 2) ?>€</div>
+            </div>
+        </div>
+
+        <!-- GRAPHES CHART.JS -->
+        <div class="charts-grid">
+            <!-- Pie Chart: Gold vs Normal -->
+            <div class="chart-card">
+                <div class="chart-title">📊 Utilisateurs Gold vs Normal</div>
+                <div class="chart-container">
+                    <canvas id="chartGoldVsNormal"></canvas>
+                </div>
+            </div>
+
+            <!-- Bar Chart: Régimes populaires -->
+            <div class="chart-card">
+                <div class="chart-title">🥗 Régimes Populaires</div>
+                <div class="chart-container">
+                    <canvas id="chartRegimes"></canvas>
+                </div>
+            </div>
+
+            <!-- Line Chart: Revenue Trend -->
+            <div class="chart-card">
+                <div class="chart-title">📈 Tendance des Revenus (6 mois)</div>
+                <div class="chart-container">
+                    <canvas id="chartRevenues"></canvas>
+                </div>
             </div>
         </div>
 
@@ -308,5 +358,122 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 1. Pie Chart: Gold vs Normal Users
+        const ctxGold = document.getElementById('chartGoldVsNormal').getContext('2d');
+        new Chart(ctxGold, {
+            type: 'doughnut',
+            data: {
+                labels: <?= json_encode($chartGoldVsNormal['labels']) ?>,
+                datasets: [{
+                    data: <?= json_encode($chartGoldVsNormal['data']) ?>,
+                    backgroundColor: [
+                        '#f39c12', // Or
+                        '#95a5a6'  // Gris
+                    ],
+                    borderColor: ['#ffffff', '#ffffff'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 12 },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Bar Chart: Régimes Populaires
+        const ctxRegimes = document.getElementById('chartRegimes').getContext('2d');
+        new Chart(ctxRegimes, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($chartRegimes['labels']) ?>,
+                datasets: [{
+                    label: 'Sélections',
+                    data: <?= json_encode($chartRegimes['data']) ?>,
+                    backgroundColor: [
+                        '#3498db',
+                        '#2ecc71',
+                        '#e74c3c',
+                        '#f39c12',
+                        '#9b59b6'
+                    ],
+                    borderRadius: 5,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 12 }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: Math.max(...<?= json_encode($chartRegimes['data']) ?>) + 2
+                    }
+                }
+            }
+        });
+
+        // 3. Line Chart: Revenue Trend
+        const ctxRevenue = document.getElementById('chartRevenues').getContext('2d');
+        new Chart(ctxRevenue, {
+            type: 'line',
+            data: {
+                labels: <?= json_encode($chartRevenues['labels']) ?>,
+                datasets: [{
+                    label: 'Revenus (€)',
+                    data: <?= json_encode($chartRevenues['data']) ?>,
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#27ae60',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 12 }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Revenus'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

@@ -106,6 +106,7 @@
                         <th>Solde</th>
                         <th>Gold</th>
                         <th>Date Inscription</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,6 +132,12 @@
                                 <?php endif; ?>
                             </td>
                             <td><?= date('d/m/Y', strtotime($user['created_at'])) ?></td>
+                            <td>
+                                <form method="POST" action="<?= base_url('admin/users/delete/'.$user['id']) ?>" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                    <?= csrf_field() ?>
+                                    <button class="btn btn-sm btn-danger">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

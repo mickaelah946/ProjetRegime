@@ -69,6 +69,13 @@
             background: #34495e;
             color: white;
         }
+        .card-form {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
         .badge-cardio {
             background: #e74c3c;
         }
@@ -97,6 +104,68 @@
 
         <a href="<?= base_url('admin') ?>" class="btn-back">← Retour</a>
 
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+        <?php endif; ?>
+
+        <div class="card-form">
+            <h3 style="margin-bottom: 20px;"><?= isset($editingActivite) && $editingActivite ? 'Modifier l’activité' : 'Ajouter une activité' ?></h3>
+            <form method="POST" action="<?= base_url('admin/activites/save') ?>" class="row g-3">
+                <?= csrf_field() ?>
+                <input type="hidden" name="id" value="<?= esc($editingActivite['id'] ?? '') ?>">
+
+                <div class="col-md-6">
+                    <label class="form-label">Nom</label>
+                    <input type="text" name="nom" class="form-control" value="<?= esc(old('nom', $editingActivite['nom'] ?? '')) ?>" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Type</label>
+                    <?php $selectedType = old('type', $editingActivite['type'] ?? 'cardio'); ?>
+                    <select name="type" class="form-select" required>
+                        <option value="cardio" <?= $selectedType === 'cardio' ? 'selected' : '' ?>>Cardio</option>
+                        <option value="musculation" <?= $selectedType === 'musculation' ? 'selected' : '' ?>>Musculation</option>
+                        <option value="yoga" <?= $selectedType === 'yoga' ? 'selected' : '' ?>>Yoga</option>
+                        <option value="autre" <?= $selectedType === 'autre' ? 'selected' : '' ?>>Autre</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Intensité</label>
+                    <?php $selectedIntensite = old('intensite', $editingActivite['intensite'] ?? 'moyenne'); ?>
+                    <select name="intensite" class="form-select" required>
+                        <option value="basse" <?= $selectedIntensite === 'basse' ? 'selected' : '' ?>>Basse</option>
+                        <option value="moyenne" <?= $selectedIntensite === 'moyenne' ? 'selected' : '' ?>>Moyenne</option>
+                        <option value="haute" <?= $selectedIntensite === 'haute' ? 'selected' : '' ?>>Haute</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3"><?= esc(old('description', $editingActivite['description'] ?? '')) ?></textarea>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Durée (jours)</label>
+                    <input type="number" name="duree_jours" class="form-control" value="<?= esc(old('duree_jours', $editingActivite['duree_jours'] ?? '')) ?>" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Calories brûlées</label>
+                    <input type="number" name="calories_brulees" class="form-control" value="<?= esc(old('calories_brulees', $editingActivite['calories_brulees'] ?? '')) ?>" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Prix (€)</label>
+                    <input type="number" step="0.01" name="prix" class="form-control" value="<?= esc(old('prix', $editingActivite['prix'] ?? '')) ?>" required>
+                </div>
+                <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-dark"><?= isset($editingActivite) && $editingActivite ? 'Mettre à jour' : 'Ajouter' ?></button>
+                    <?php if (isset($editingActivite) && $editingActivite): ?>
+                        <a href="<?= base_url('admin/activites') ?>" class="btn btn-outline-secondary">Annuler</a>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
+
         <div class="table-container">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
@@ -107,6 +176,7 @@
                         <th>Durée</th>
                         <th>Calories Brûlées</th>
                         <th>Prix</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,6 +209,13 @@
                             <td><?= $activite['duree_jours'] ?> j</td>
                             <td><?= $activite['calories_brulees'] ?> kcal</td>
                             <td><?= number_format($activite['prix'], 2) ?>€</td>
+                            <td>
+                                <a href="<?= base_url('admin/activites?edit=' . $activite['id']) ?>" class="btn btn-sm btn-primary">Modifier</a>
+                                <form method="POST" action="<?= base_url('admin/activites/delete/' . $activite['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer cette activité ?');">
+                                    <?= csrf_field() ?>
+                                    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

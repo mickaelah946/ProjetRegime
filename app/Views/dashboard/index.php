@@ -271,22 +271,28 @@
             <div class="card-body">
                 <div class="wallet-section">
                     <div class="stat-label">Solde disponible</div>
-                    <div class="wallet-amount"><?= number_format($user['solde_portefeuille'], 2) ?>€</div>
+                    <div class="wallet-amount" id="walletBalance"><?= number_format($user['solde_portefeuille'], 2) ?>€</div>
                 </div>
 
-                <!-- Ajouter argent avec code -->
-                <form method="POST" action="<?= base_url('dashboard/validate-code') ?>" class="mb-3">
+                <!-- Ajouter argent avec code (AJAX) -->
+                <div id="codeFormAlert" style="display: none; margin-bottom: 15px;"></div>
+                
+                <form id="codeValidationForm" class="mb-3">
                     <?= csrf_field() ?>
                     <div class="input-group">
                         <input 
                             type="text" 
                             class="form-control" 
+                            id="codeInput"
                             name="code" 
                             placeholder="Entrez votre code..."
-                            required
+                            autocomplete="off"
                         >
-                        <button type="submit" class="btn btn-main" style="width: auto;">Valider</button>
+                        <button type="submit" class="btn btn-main" style="width: auto;" id="submitCodeBtn">Valider</button>
                     </div>
+                    <small style="color: #999; display: block; margin-top: 8px;">
+                        💡 Entrez un code portefeuille pour ajouter des fonds (pas de rechargement)
+                    </small>
                 </form>
 
                 <?php if ($user['is_gold']): ?>
@@ -356,5 +362,106 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Gestion du formulaire de validation de code (AJAX)
+        document.getElementById('codeValidationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const codeInput = document.getElementById('codeInput');
+            const code = codeInput.value.trim();
+            const submitBtn = document.getElementById('submitCodeBtn');
+            const alertDiv = document.getElementById('codeFormAlert');
+
+            // Validation côté client
+            if (!code) {
+                showAlert('Veuillez entrer un code', 'danger');
+                return;
+            }
+
+            if (code.length < 3) {
+                showAlert('Le code doit contenir au moins 3 caractères', 'danger');
+                return;
+            }
+
+            // Désactiver le bouton pendant l'envoi
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Validation...';
+
+            try {
+                // Récupérer le token CSRF
+                const csrfToken = document.querySelector('input[name="<?= csrf_token() ?>"]').value;
+
+                // Envoyer la requête AJAX
+                const response = await fetch('<?= base_url('api/validate-code') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        '<?= csrf_header() ?>': csrfToken,
+                    },
+                    body: new URLSearchParams({
+                        'code': code,
+                        '<?= csrf_token() ?>': csrfToken,
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Succès
+                    showAlert('✓ ' + data.message, 'success');
+                    codeInput.value = '';
+                    
+                    // Mettre à jour le solde en temps réel
+                    document.getElementById('walletBalance').textContent = 
+                        data.newBalance.toFixed(2) + '€';
+                    
+                    // Animation du solde
+                    const walletElement = document.getElementById('walletBalance');
+                    walletElement.style.color = '#27ae60';
+                    walletElement.style.fontWeight = '700';
+                    setTimeout(() => {
+                        walletElement.style.color = '#667eea';
+                    }, 2000);
+
+                } else {
+                    // Erreur
+                    showAlert('❌ ' + data.error, 'danger');
+                }
+            } catch (error) {
+                console.error('Erreur AJAX:', error);
+                showAlert('Une erreur est survenue. Veuillez réessayer.', 'danger');
+            } finally {
+                // Réactiver le bouton
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Valider';
+            }
+        });
+
+        // Fonction pour afficher les alertes
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('codeFormAlert');
+            alertDiv.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            alertDiv.style.display = 'block';
+
+            // Auto-dismiss après 5 secondes
+            if (type === 'success') {
+                setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Focus sur l'input au chargement
+        window.addEventListener('load', function() {
+            document.getElementById('codeInput').focus();
+        });
+    </script>
 </body>
 </html>
