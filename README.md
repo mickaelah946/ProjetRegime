@@ -7,7 +7,7 @@ Application web PHP pour la gestion des regimes, activites, utilisateurs et espa
 Depuis la racine du projet :
 
 ```bash
-php -S localhost:8000 -t public
+php spark serve --port 8000
 ```
 
 Puis ouvrir :

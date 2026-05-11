@@ -64,7 +64,7 @@ php spark db:seed --all
 
 ```bash
 # Mode développement
-php -S localhost:8000 -t public
+php spark serve --port 8000
 
 # Accéder à l'application
 # http://localhost:8000/
