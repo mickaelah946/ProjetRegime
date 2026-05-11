@@ -324,21 +324,73 @@
                             </div>
                         </div>
 
-                        <!-- Bouton et prix -->
-                        <div class="regime-footer">
-                            <div class="prix-section">
-                                <?php if ($user['is_gold'] && $regime['prix_original'] != $regime['prix']): ?>
-                                    <span class="prix-original"><?= number_format($regime['prix_original'], 2) ?>€</span>
+                        <!-- Sélecteur de durée et tarifs -->
+                        <div style="margin-bottom: 15px;">
+                            <label style="font-weight: 600; color: #333; display: block; margin-bottom: 8px;">📅 Choisir la durée:</label>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <?php 
+                                    // Tarifs disponibles
+                                    $durees = [7, 14, 30, 90];
+                                    $selectedDuree = $durees[0] ?? 7;
+                                ?>
+                                <?php foreach ($durees as $duree): ?>
+                                    <?php if (isset($regime['tariffs'][$duree])): ?>
+                                        <button 
+                                            type="button" 
+                                            class="duration-btn"
+                                            data-regime="<?= $regime['id'] ?>"
+                                            data-duration="<?= $duree ?>"
+                                            data-price="<?= $regime['tariffs'][$duree]['prix'] ?>"
+                                            data-price-original="<?= $regime['tariffs'][$duree]['prix_original'] ?>"
+                                            data-reduction="<?= $regime['tariffs'][$duree]['reduction'] ?>"
+                                            data-is-gold="<?= $user['is_gold'] ? '1' : '0' ?>"
+                                            onclick="selectDuration(this)"
+                                            style="<?= $duree === $selectedDuree ? 'background: #667eea; color: white; border: 2px solid #667eea;' : 'background: white; color: #667eea; border: 2px solid #667eea;' ?> padding: 8px 12px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                                        >
+                                            <?= $duree ?> j
+                                        </button>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <!-- Affichage du prix sélectionné -->
+                        <div class="regime-footer" style="display: flex; flex-direction: column; gap: 15px;">
+                            <div style="padding: 12px; background: #f8f9fa; border-radius: 5px;">
+                                <div style="font-size: 0.85rem; color: #666; margin-bottom: 5px;">Prix pour la durée sélectionnée:</div>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <?php if ($user['is_gold']): ?>
+                                        <span class="prix-original" id="prix-original-<?= $regime['id'] ?>">
+                                            <?php 
+                                                $tariff = $regime['tariffs'][$selectedDuree] ?? reset($regime['tariffs']);
+                                                echo number_format($tariff['prix_original'], 2);
+                                            ?>€
+                                        </span>
+                                    <?php endif; ?>
+                                    <span class="prix" id="prix-<?= $regime['id'] ?>">
+                                        <?php 
+                                            $tariff = $regime['tariffs'][$selectedDuree] ?? reset($regime['tariffs']);
+                                            echo number_format($tariff['prix'], 2);
+                                        ?>€
+                                    </span>
+                                    <?php if ($user['is_gold']): ?>
+                                        <span class="gold-badge">-15%</span>
+                                    <?php endif; ?>
+                                </div>
+                                <?php if (isset($regime['tariffs'][$selectedDuree]['reduction']) && $regime['tariffs'][$selectedDuree]['reduction'] > 0): ?>
+                                    <div style="font-size: 0.8rem; color: #27ae60; margin-top: 5px;">
+                                        💰 Réduction: -<?= $regime['tariffs'][$selectedDuree]['reduction'] ?>%
+                                    </div>
                                 <?php endif; ?>
-                                <span class="prix"><?= number_format($regime['prix'], 2) ?>€</span>
                             </div>
 
                             <?php if ($regime['already_selected']): ?>
                                 <span class="selected-badge">✓ Sélectionné</span>
                             <?php else: ?>
-                                <form method="POST" action="<?= base_url('regime/select/' . $regime['id']) ?>" style="display: inline;">
+                                <form method="POST" action="<?= base_url('regime/select/' . $regime['id']) ?>" style="width: 100%;">
                                     <?= csrf_field() ?>
-                                    <button type="submit" class="btn-select">Choisir</button>
+                                    <input type="hidden" name="duree_jours" id="duree-<?= $regime['id'] ?>" value="<?= $selectedDuree ?>">
+                                    <button type="submit" class="btn-select" style="width: 100%;">Choisir (<?= $selectedDuree ?> j)</button>
                                 </form>
                             <?php endif; ?>
                         </div>
@@ -377,5 +429,73 @@
             <a href="<?= base_url('dashboard') ?>" class="btn-select">← Retour au Dashboard</a>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Gestion de la sélection de durée
+        function selectDuration(button) {
+            const regimeId = button.dataset.regime;
+            const duration = button.dataset.duration;
+            const price = parseFloat(button.dataset.price);
+            const priceOriginal = parseFloat(button.dataset.priceOriginal);
+            const reduction = parseInt(button.dataset.reduction);
+            const isGold = button.dataset.isGold === '1';
+
+            // Désactiver tous les boutons de ce régime
+            document.querySelectorAll(`.duration-btn[data-regime="${regimeId}"]`).forEach(btn => {
+                btn.style.background = 'white';
+                btn.style.color = '#667eea';
+                btn.style.borderColor = '#667eea';
+            });
+
+            // Activer le bouton cliqué
+            button.style.background = '#667eea';
+            button.style.color = 'white';
+            button.style.borderColor = '#667eea';
+
+            // Mettre à jour le prix affiché
+            const priceElement = document.getElementById(`prix-${regimeId}`);
+            const priceOriginalElement = document.getElementById(`prix-original-${regimeId}`);
+            const durationInput = document.getElementById(`duree-${regimeId}`);
+            const submitButton = document.querySelector(`form[action*="regime/select/${regimeId}"] button`);
+
+            if (priceElement) {
+                priceElement.textContent = price.toFixed(2) + '€';
+            }
+
+            if (priceOriginalElement && isGold) {
+                priceOriginalElement.textContent = priceOriginal.toFixed(2) + '€';
+            }
+
+            if (durationInput) {
+                durationInput.value = duration;
+            }
+
+            if (submitButton) {
+                submitButton.textContent = `Choisir (${duration} j)`;
+            }
+
+            // Mettre à jour le texte de réduction si présent
+            const reductionElement = document.querySelector(`form[action*="regime/select/${regimeId}"] ~ .reduction-text`);
+            if (reduction > 0) {
+                // Vous pouvez afficher la réduction ici si nécessaire
+            }
+        }
+
+        // Initialiser les premiers boutons
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.duration-btn').forEach((btn, index) => {
+                // Activer le premier bouton de chaque régime
+                const regimeId = btn.dataset.regime;
+                const prevBtn = btn.previousElementSibling;
+                
+                if (!prevBtn || prevBtn.dataset.regime !== regimeId) {
+                    // C'est le premier bouton de ce régime
+                    selectDuration(btn);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -33,9 +33,8 @@ class AuthController extends BaseController
 
         $user = $this->userModel->where('username', $username)->first();
 
-        // ⚠️ DEVELOPMENT ONLY: Comparaison simple des mots de passe en clair
-        // En production, utiliser password_verify() avec hashs bcrypt
-        if ($user && $password === $user['password_hash']) {
+        // Vérification sécurisée avec password_verify()
+        if ($user && password_verify($password, $user['password_hash'])) {
             // Connexion réussie
             session()->set([
                 'user_id'    => $user['id'],
@@ -133,7 +132,7 @@ class AuthController extends BaseController
             'nom'           => session()->get('temp_nom'),
             'email'         => session()->get('temp_email'),
             'username'      => session()->get('temp_username'),
-            'password_hash' => session()->get('temp_password'),
+            'password_hash' => password_hash(session()->get('temp_password'), PASSWORD_BCRYPT),
             'genre'         => session()->get('temp_genre'),
             'taille'        => $this->request->getPost('taille'),
             'poids'         => $this->request->getPost('poids'),

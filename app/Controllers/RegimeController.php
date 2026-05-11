@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\RegimeModel;
 use App\Models\ActiviteModel;
 use App\Models\ObjectifModel;
+use App\Models\RegimeTarifModel;
 use Config\Database;
 
 class RegimeController extends BaseController
@@ -14,6 +15,7 @@ class RegimeController extends BaseController
     protected $regimeModel;
     protected $activiteModel;
     protected $objectifModel;
+    protected $tarifModel;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class RegimeController extends BaseController
         $this->regimeModel = new RegimeModel();
         $this->activiteModel = new ActiviteModel();
         $this->objectifModel = new ObjectifModel();
+        $this->tarifModel = new RegimeTarifModel();
     }
 
     /**
@@ -45,7 +48,7 @@ class RegimeController extends BaseController
             $userRegimes = $this->regimeModel->getUserRegimes($userId);
             $userObjectifs = $this->objectifModel->getUserObjectifs($userId);
 
-            // Calculer prix avec remise Gold si applicable
+            // Calculer prix avec remise Gold et ajouter les tarifs
             foreach ($regimes as &$regime) {
                 $regime['prix'] = (float)$regime['prix'];
                 $regime['prix_original'] = $regime['prix'];
@@ -53,6 +56,22 @@ class RegimeController extends BaseController
                     $regime['prix'] = round($regime['prix'] * 0.85, 2); // 15% de remise
                 }
                 $regime['already_selected'] = $this->regimeModel->hasUserSelectedRegime($userId, $regime['id']);
+                
+                // Récupérer les tarifs pour ce régime
+                $tariffs = $this->tarifModel->getByRegime($regime['id']);
+                $regime['tariffs'] = [];
+                
+                foreach ($tariffs as $tariff) {
+                    $tariffPrice = (float)$tariff['prix'];
+                    if ($user['is_gold']) {
+                        $tariffPrice = round($tariffPrice * 0.85, 2); // 15% de remise
+                    }
+                    $regime['tariffs'][$tariff['duree_jours']] = [
+                        'prix' => $tariffPrice,
+                        'prix_original' => (float)$tariff['prix'],
+                        'reduction' => $tariff['reduction_pourcentage'],
+                    ];
+                }
             }
 
             $data = [
