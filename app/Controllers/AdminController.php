@@ -462,4 +462,81 @@ class AdminController extends BaseController
         $this->tarifModel->delete($tarifId);
         return redirect()->back()->with('success', 'Tarif supprimé avec succès');
     }
+
+    /**
+     * Tableau croisé : Utilisateurs vs Régimes vs Activités
+     */
+    public function crossTabUsers()
+    {
+        if ($redirect = $this->requireAdmin()) {
+            return $redirect;
+        }
+
+        $db = Database::connect();
+
+        // Récupérer tous les utilisateurs (sauf admin)
+        $users = $this->userModel->where('role', 'user')
+                                 ->orderBy('nom', 'ASC')
+                                 ->findAll();
+
+        // Récupérer tous les régimes
+        $regimes = $this->regimeModel->orderBy('nom', 'ASC')->findAll();
+
+        // Récupérer tous les activités
+        $activites = $this->activiteModel->orderBy('nom', 'ASC')->findAll();
+
+        // Construire un tableau croisé : user_id => regime_id => statut
+        $crossTabRegimes = [];
+        $crossTabActivites = [];
+
+        foreach ($users as $user) {
+            $userId = $user['id'];
+            
+            // Régimes de cet utilisateur
+            $userRegimes = $db->table('user_regimes')
+                             ->where('user_id', $userId)
+                             ->get()
+                             ->getResultArray();
+            
+            $crossTabRegimes[$userId] = [];
+            foreach ($regimes as $regime) {
+                $found = null;
+                foreach ($userRegimes as $ur) {
+                    if ($ur['regime_id'] == $regime['id']) {
+                        $found = $ur['statut'];
+                        break;
+                    }
+                }
+                $crossTabRegimes[$userId][$regime['id']] = $found;
+            }
+
+            // Activités de cet utilisateur
+            $userActivites = $db->table('user_activites')
+                               ->where('user_id', $userId)
+                               ->get()
+                               ->getResultArray();
+
+            $crossTabActivites[$userId] = [];
+            foreach ($activites as $activite) {
+                $found = null;
+                foreach ($userActivites as $ua) {
+                    if ($ua['activite_id'] == $activite['id']) {
+                        $found = $ua['statut'];
+                        break;
+                    }
+                }
+                $crossTabActivites[$userId][$activite['id']] = $found;
+            }
+        }
+
+        $data = [
+            'users' => $users,
+            'regimes' => $regimes,
+            'activites' => $activites,
+            'crossTabRegimes' => $crossTabRegimes,
+            'crossTabActivites' => $crossTabActivites,
+        ];
+
+        return view('admin/cross_tab_users', $data);
+    }
 }

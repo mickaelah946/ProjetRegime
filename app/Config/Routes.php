@@ -47,6 +47,7 @@ $routes->post('admin/activites/delete/(:num)', 'AdminController::deleteActivite/
 $routes->get('admin/codes', 'AdminController::codes', ['filter' => 'admin']);
 $routes->post('admin/codes/save', 'AdminController::saveCode', ['filter' => 'admin']);
 $routes->post('admin/codes/delete/(:num)', 'AdminController::deleteCode/$1', ['filter' => 'admin']);
+$routes->get('admin/cross-tab', 'AdminController::crossTabUsers', ['filter' => 'admin']);
 
 // ============================================
 // REGIMES
