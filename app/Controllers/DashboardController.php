@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\ObjectifModel;
 use App\Models\CodePortefeuilleModel;
+use Config\Database;
 
 class DashboardController extends BaseController
 {
@@ -198,6 +199,58 @@ class DashboardController extends BaseController
         ]);
 
         return redirect()->back()->with('success', 'Option Gold activée ! 15% de remise sur tous les régimes');
+    }
+
+    public function editProfile()
+    {
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to('/login')->with('error', 'Veuillez d\'abord vous connecter');
+        }
+
+        $user = $this->userModel->find(session()->get('user_id'));
+        if (!$user) {
+            return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+        }
+
+        return view('dashboard/edit_profile', ['user' => $user]);
+    }
+
+    public function updateProfile()
+    {
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to('/login')->with('error', 'Veuillez d\'abord vous connecter');
+        }
+
+        $rules = [
+            'nom' => 'required|min_length[3]|max_length[100]',
+            'email' => 'required|valid_email',
+            'genre' => 'required|in_list[M,F]',
+            'taille' => 'required|numeric|greater_than[1.0]|less_than[3.0]',
+            'poids' => 'required|numeric|greater_than[20]|less_than[500]',
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = [
+            'nom' => trim((string) $this->request->getPost('nom')),
+            'email' => trim((string) $this->request->getPost('email')),
+            'genre' => $this->request->getPost('genre'),
+            'taille' => (float) $this->request->getPost('taille'),
+            'poids' => (float) $this->request->getPost('poids'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+
+        if ($this->request->getPost('password')) {
+            $data['password_hash'] = password_hash((string) $this->request->getPost('password'), PASSWORD_BCRYPT);
+        }
+
+        Database::connect()->table('users')->where('id', session()->get('user_id'))->update($data);
+        session()->set('nom', $data['nom']);
+        session()->set('email', $data['email']);
+
+        return redirect()->to('/dashboard')->with('success', 'Profil mis à jour avec succès');
     }
 
     // ============================================

@@ -28,6 +28,8 @@ $routes->post('dashboard/save-objectifs', 'DashboardController::saveObjectifs', 
 $routes->post('dashboard/validate-code', 'DashboardController::validateCode', ['filter' => 'auth']);
 $routes->post('api/validate-code', 'DashboardController::validateCodeAjax', ['filter' => 'auth']);
 $routes->post('dashboard/buy-gold', 'DashboardController::buyGold', ['filter' => 'auth']);
+$routes->get('profile/edit', 'DashboardController::editProfile', ['filter' => 'auth']);
+$routes->post('profile/update', 'DashboardController::updateProfile', ['filter' => 'auth']);
 
 // ============================================
 // ADMIN BACK OFFICE
@@ -46,8 +48,12 @@ $routes->post('admin/activites/save', 'AdminController::saveActivite', ['filter'
 $routes->post('admin/activites/delete/(:num)', 'AdminController::deleteActivite/$1', ['filter' => 'admin']);
 $routes->get('admin/codes', 'AdminController::codes', ['filter' => 'admin']);
 $routes->post('admin/codes/save', 'AdminController::saveCode', ['filter' => 'admin']);
+$routes->post('admin/codes/toggle/(:num)', 'AdminController::toggleCode/$1', ['filter' => 'admin']);
 $routes->post('admin/codes/delete/(:num)', 'AdminController::deleteCode/$1', ['filter' => 'admin']);
 $routes->get('admin/cross-tab', 'AdminController::crossTabUsers', ['filter' => 'admin']);
+$routes->get('admin/parametres', 'AdminController::parametres', ['filter' => 'admin']);
+$routes->post('admin/parametres/save', 'AdminController::saveParametre', ['filter' => 'admin']);
+$routes->post('admin/parametres/delete/(:num)', 'AdminController::deleteParametre/$1', ['filter' => 'admin']);
 
 // ============================================
 // REGIMES

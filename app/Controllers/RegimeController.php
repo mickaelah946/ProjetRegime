@@ -110,8 +110,13 @@ class RegimeController extends BaseController
                 return redirect()->back()->with('error', 'Vous avez déjà ce régime actif');
             }
 
+            $duree_jours = (int) ($this->request->getPost('duree_jours') ?? $regime['duree_jours']);
+            $tarif = $this->tarifModel->where('regime_id', $regimeId)
+                                      ->where('duree_jours', $duree_jours)
+                                      ->first();
+
             // Calculer le prix avec remise Gold
-            $prix_paye = (float)$regime['prix'];
+            $prix_paye = $tarif ? (float) $tarif['prix'] : (float)$regime['prix'];
             if ($user['is_gold']) {
                 $prix_paye = round($prix_paye * 0.85, 2); // 15% de remise
             }
@@ -123,7 +128,6 @@ class RegimeController extends BaseController
 
             // Insérer le régime pour l'utilisateur
             $db = Database::connect();
-            $duree_jours = (int)$regime['duree_jours'];
             $db->table('user_regimes')->insert([
                 'user_id' => $userId,
                 'regime_id' => $regimeId,

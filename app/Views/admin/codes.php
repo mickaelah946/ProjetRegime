@@ -182,6 +182,12 @@
                             <td><?= date('d/m/Y', strtotime($code['created_at'])) ?></td>
                             <td>
                                 <a href="<?= base_url('admin/codes?edit=' . $code['id']) ?>" class="btn btn-sm btn-primary">Modifier</a>
+                                <?php if (empty($code['utilisateur_id'])): ?>
+                                    <form method="POST" action="<?= base_url('admin/codes/toggle/' . $code['id']) ?>" style="display:inline;">
+                                        <?= csrf_field() ?>
+                                        <button type="submit" class="btn btn-sm btn-warning"><?= $code['valide'] ? 'Désactiver' : 'Activer' ?></button>
+                                    </form>
+                                <?php endif; ?>
                                 <form method="POST" action="<?= base_url('admin/codes/delete/' . $code['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer ce code ?');">
                                     <?= csrf_field() ?>
                                     <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>

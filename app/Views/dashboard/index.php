@@ -354,8 +354,8 @@
                     <a href="<?= base_url('regime/active') ?>" class="action-btn">📊 Mes régimes</a>
                     <a href="<?= base_url('activity/browse') ?>" class="action-btn">💪 Voir activités</a>
                     <a href="<?= base_url('activity/active') ?>" class="action-btn">🏃 Mes activités</a>
-                    <a href="#" class="action-btn">✏️ Modifier profil</a>
-                    <a href="#" class="action-btn">📥 Exporter PDF</a>
+                    <a href="<?= base_url('profile/edit') ?>" class="action-btn">✏️ Modifier profil</a>
+                    <a href="<?= base_url('pdf/invoice/' . $user['id']) ?>" class="action-btn">📥 Exporter PDF</a>
                 </div>
             </div>
         </div>

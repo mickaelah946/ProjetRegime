@@ -27,6 +27,10 @@ class PdfController extends BaseController
             return redirect()->to('/login');
         }
 
+        if (session()->get('role') !== 'admin' && (int) session()->get('user_id') !== (int) $userId) {
+            return redirect()->to('/dashboard')->with('error', 'Accès non autorisé');
+        }
+
         $user = $this->userModel->find($userId);
         if (!$user) {
             return $this->response->setStatusCode(404)->setBody('Utilisateur non trouvé');
@@ -72,7 +76,7 @@ class PdfController extends BaseController
             return $this->response->setStatusCode(404)->setBody('Régime non trouvé');
         }
 
-        $user = $this->userModel->find(session()->get('userId'));
+        $user = $this->userModel->find(session()->get('user_id'));
 
         // Préparation des données
         $data = [

@@ -8,6 +8,7 @@ use App\Models\ActiviteModel;
 use App\Models\CodePortefeuilleModel;
 use App\Models\ObjectifModel;
 use App\Models\RegimeTarifModel;
+use App\Models\ParametreModel;
 use Config\Database;
 
 class AdminController extends BaseController
@@ -18,6 +19,7 @@ class AdminController extends BaseController
     protected $codeModel;
     protected $objectifModel;
     protected $tarifModel;
+    protected $parametreModel;
 
     public function __construct()
     {
@@ -27,6 +29,7 @@ class AdminController extends BaseController
         $this->codeModel = new CodePortefeuilleModel();
         $this->objectifModel = new ObjectifModel();
         $this->tarifModel = new RegimeTarifModel();
+        $this->parametreModel = new ParametreModel();
     }
 
     private function requireAdmin()
@@ -230,6 +233,7 @@ class AdminController extends BaseController
         }
 
         $this->regimeModel->insert($data);
+        $this->tarifModel->initializeTariffs($this->regimeModel->getInsertID(), $data['prix']);
 
         return redirect()->to('/admin/regimes')->with('success', 'Régime ajouté avec succès');
     }
@@ -389,6 +393,74 @@ class AdminController extends BaseController
         $this->codeModel->delete($id);
 
         return redirect()->to('/admin/codes')->with('success', 'Code supprimé avec succès');
+    }
+
+    public function toggleCode($id)
+    {
+        if ($redirect = $this->requireAdmin()) {
+            return $redirect;
+        }
+
+        $code = $this->codeModel->find($id);
+        if (!$code) {
+            return redirect()->to('/admin/codes')->with('error', 'Code introuvable');
+        }
+
+        if (!empty($code['utilisateur_id'])) {
+            return redirect()->to('/admin/codes')->with('error', 'Impossible de réactiver un code déjà utilisé');
+        }
+
+        $this->codeModel->update($id, ['valide' => !$code['valide']]);
+
+        return redirect()->to('/admin/codes')->with('success', 'Statut du code mis à jour');
+    }
+
+    public function parametres()
+    {
+        if ($redirect = $this->requireAdmin()) {
+            return $redirect;
+        }
+
+        $editId = (int) ($this->request->getGet('edit') ?? 0);
+        $editingParametre = $editId ? $this->parametreModel->find($editId) : null;
+
+        return view('admin/parametres', [
+            'parametres' => $this->parametreModel->orderBy('cle', 'ASC')->findAll(),
+            'editingParametre' => $editingParametre,
+        ]);
+    }
+
+    public function saveParametre()
+    {
+        if ($redirect = $this->requireAdmin()) {
+            return $redirect;
+        }
+
+        $id = (int) ($this->request->getPost('id') ?? 0);
+        $data = [
+            'cle' => trim((string) $this->request->getPost('cle')),
+            'valeur' => trim((string) $this->request->getPost('valeur')),
+            'description' => trim((string) $this->request->getPost('description')),
+        ];
+
+        if ($id) {
+            $this->parametreModel->update($id, $data);
+            return redirect()->to('/admin/parametres')->with('success', 'Paramètre modifié avec succès');
+        }
+
+        $this->parametreModel->insert($data);
+        return redirect()->to('/admin/parametres')->with('success', 'Paramètre ajouté avec succès');
+    }
+
+    public function deleteParametre($id)
+    {
+        if ($redirect = $this->requireAdmin()) {
+            return $redirect;
+        }
+
+        $this->parametreModel->delete($id);
+
+        return redirect()->to('/admin/parametres')->with('success', 'Paramètre supprimé avec succès');
     }
 
     /**

@@ -42,6 +42,21 @@ CREATE TABLE regimes (
 );
 
 -- ============================================
+-- TABLE REGIME_TARIFS
+-- ============================================
+CREATE TABLE regime_tarifs (
+    id                      INT AUTO_INCREMENT PRIMARY KEY,
+    regime_id               INT NOT NULL,
+    duree_jours             INT NOT NULL,
+    prix                    DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    reduction_pourcentage   INT NOT NULL DEFAULT 0,
+    created_at              DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at              DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (regime_id) REFERENCES regimes(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    UNIQUE KEY unique_regime_duree (regime_id, duree_jours)
+);
+
+-- ============================================
 -- TABLE ACTIVITES_SPORTIVES
 -- ============================================
 CREATE TABLE activites_sportives (
@@ -140,6 +155,19 @@ CREATE TABLE parametres (
 );
 
 -- ============================================
+-- TABLE MIGRATIONS (CodeIgniter)
+-- ============================================
+CREATE TABLE migrations (
+    id          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    version     VARCHAR(255) NOT NULL,
+    class       VARCHAR(255) NOT NULL,
+    `group`     VARCHAR(255) NOT NULL,
+    namespace   VARCHAR(255) NOT NULL,
+    time        INT(11) NOT NULL,
+    batch       INT(11) UNSIGNED NOT NULL
+);
+
+-- ============================================
 -- INSERT: OBJECTIFS
 -- ============================================
 INSERT INTO objectifs (nom, description) VALUES
@@ -152,13 +180,13 @@ INSERT INTO objectifs (nom, description) VALUES
 -- ============================================
 INSERT INTO users (nom, email, username, password_hash, genre, taille, poids, solde_portefeuille, is_gold, role, created_at, updated_at) VALUES
 -- Admin (password: admin123)
-('Admin System', 'admin@RegimeApp.com', 'admin', 'admin123', 'M', 1.75, 80.00, 1000.00, FALSE, 'admin', NOW(), NOW()),
+('Admin System', 'admin@RegimeApp.com', 'admin', '$2y$10$OByBK98ecciq3w2KiK2M4OsgFKOjPDrYd1ec9XLGUOq0u/cyv3CIG', 'M', 1.75, 80.00, 1000.00, FALSE, 'admin', NOW(), NOW()),
 
 -- Users
-('Alice Martin', 'alice@email.com', 'alice', 'alice123', 'F', 1.65, 72.00, 50.00, FALSE, 'user', NOW(), NOW()),
-('Bob Dupont', 'bob@email.com', 'bob', 'bob123', 'M', 1.80, 95.00, 75.00, TRUE, 'user', NOW(), NOW()),
-('Carole Michel', 'carole@email.com', 'carole', 'carole123', 'F', 1.60, 68.00, 100.00, FALSE, 'user', NOW(), NOW()),
-('David Leblanc', 'david@email.com', 'david', 'david123', 'M', 1.78, 110.00, 35.50, TRUE, 'user', NOW(), NOW());
+('Alice Martin', 'alice@email.com', 'alice', '$2y$10$qg4R2wVsj1z90R32TtarM.S6GbYp23yCx5X1wDz3hcYx5ui5QOEby', 'F', 1.65, 72.00, 50.00, FALSE, 'user', NOW(), NOW()),
+('Bob Dupont', 'bob@email.com', 'bob', '$2y$10$abnchtixaNVEM9iAVgcP6.t0NfouAHul6T.kSsFlFi6SagbWUGP1q', 'M', 1.80, 95.00, 75.00, TRUE, 'user', NOW(), NOW()),
+('Carole Michel', 'carole@email.com', 'carole', '$2y$10$4zV6VLCd/gJRMvRoR02CJ.b1uWEgCR/DGsVUabBD0wgCQjZI8bNqq', 'F', 1.60, 68.00, 100.00, FALSE, 'user', NOW(), NOW()),
+('David Leblanc', 'david@email.com', 'david', '$2y$10$QuGDyQP3dSJm.VzlYpuxyO4a9p3PnFKK9DqoTV9enauOyjWaYs2ly', 'M', 1.78, 110.00, 35.50, TRUE, 'user', NOW(), NOW());
 
 -- ============================================
 -- INSERT: REGIMES (5 régimes)
@@ -169,6 +197,16 @@ INSERT INTO regimes (nom, description, type, duree_jours, prix, poids_variation_
 ('Maintien Sain', 'Régime équilibré pour stabiliser votre poids sans variation significative. Idéal après avoir atteint votre objectif.', 'maintien', 60, 20.00, -0.50, 0.50, 30, 30, 40),
 ('Prise Musclée', 'Régime hypercalorique riche en protéines pour la construction musculaire. Parfait en combinaison avec la musculation.', 'prise', 90, 35.00, 3.00, 6.00, 40, 20, 40),
 ('Rééquilibre', 'Régime équilibré sur long terme pour rééquilibrer progressivement votre poids. Résultats stables et durables.', 'perte', 60, 28.00, -3.00, -1.50, 25, 40, 35);
+
+-- ============================================
+-- INSERT: REGIME_TARIFS (prix variables par durée)
+-- ============================================
+INSERT INTO regime_tarifs (regime_id, duree_jours, prix, reduction_pourcentage) VALUES
+(1, 7, 12.00, 0), (1, 14, 22.80, 5), (1, 30, 46.29, 10), (1, 90, 131.14, 15),
+(2, 7, 18.00, 0), (2, 14, 34.20, 5), (2, 30, 69.43, 10), (2, 90, 196.71, 15),
+(3, 7, 20.00, 0), (3, 14, 38.00, 5), (3, 30, 77.14, 10), (3, 90, 218.57, 15),
+(4, 7, 35.00, 0), (4, 14, 66.50, 5), (4, 30, 135.00, 10), (4, 90, 382.50, 15),
+(5, 7, 28.00, 0), (5, 14, 53.20, 5), (5, 30, 108.00, 10), (5, 90, 306.00, 15);
 
 -- ============================================
 -- INSERT: ACTIVITES_SPORTIVES (5 activités)
@@ -231,6 +269,10 @@ INSERT INTO parametres (cle, valeur, description) VALUES
 ('calories_homme_defaut', '2500', 'Calories recommandées par défaut pour un homme'),
 ('email_support', 'support@regimeapp.com', 'Email de support de l\'application'),
 ('nom_app', 'RegimeApp', 'Nom de l\'application');
+
+INSERT INTO migrations (version, class, `group`, namespace, time, batch) VALUES
+('2026-05-11-000001', 'App\\Database\\Migrations\\CreateRegimeTarifs', 'default', 'App', UNIX_TIMESTAMP(), 1),
+('2026-05-11-000002', 'App\\Database\\Migrations\\HashExistingPasswords', 'default', 'App', UNIX_TIMESTAMP(), 1);
 
 -- ============================================
 -- INDEX pour optimisation
