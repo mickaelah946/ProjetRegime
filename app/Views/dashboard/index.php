@@ -18,7 +18,7 @@
             padding: 20px 0;
         }
         .navbar-custom {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             padding: 15px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -50,7 +50,7 @@
             transform: translateY(-5px);
         }
         .card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             color: white;
             border-radius: 10px 10px 0 0;
             padding: 20px;
@@ -100,7 +100,7 @@
         .objectif-item {
             padding: 10px;
             background: #f8f9fa;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #00BCD4;
             border-radius: 5px;
             display: flex;
             align-items: center;
@@ -110,7 +110,7 @@
             cursor: pointer;
         }
         .btn-main {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -122,7 +122,7 @@
         }
         .btn-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
             color: white;
         }
         .btn-secondary {
@@ -156,10 +156,10 @@
         }
         .action-btn {
             padding: 15px;
-            border: 2px solid #667eea;
+            border: 2px solid #00BCD4;
             border-radius: 8px;
             background: white;
-            color: #667eea;
+            color: #00BCD4;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -167,7 +167,7 @@
             text-align: center;
         }
         .action-btn:hover {
-            background: #667eea;
+            background: #00BCD4;
             color: white;
         }
         .alert {
@@ -176,7 +176,7 @@
             border: none;
         }
         .wallet-section {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            background: linear-gradient(135deg, #00BCD415 0%, #0097A715 100%);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
@@ -184,7 +184,7 @@
         .wallet-amount {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #667eea;
+            color: #00BCD4;
         }
         .modal {
             display: none;
@@ -422,7 +422,7 @@
                     walletElement.style.color = '#27ae60';
                     walletElement.style.fontWeight = '700';
                     setTimeout(() => {
-                        walletElement.style.color = '#667eea';
+                        walletElement.style.color = '#00BCD4';
                     }, 2000);
 
                 } else {

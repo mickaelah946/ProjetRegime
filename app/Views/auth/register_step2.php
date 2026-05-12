@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -45,7 +45,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #667eea;
+            background: #00BCD4;
             color: white;
             display: flex;
             align-items: center;
@@ -54,8 +54,8 @@
             margin: 0 auto 5px;
         }
         .step-item.active .step-number {
-            background: #764ba2;
-            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+            background: #0097A7;
+            box-shadow: 0 5px 15px rgba(0, 151, 167, 0.4);
         }
         .step-item p {
             font-size: 0.9rem;
@@ -68,8 +68,8 @@
             margin-bottom: 15px;
         }
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+            border-color: #00BCD4;
+            box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
         }
         .buttons {
             display: flex;
@@ -77,7 +77,7 @@
         }
         .btn-next {
             flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             color: white;
             border: none;
             padding: 12px;
@@ -88,7 +88,7 @@
         }
         .btn-next:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
         }
         .btn-back {
             flex: 1;
@@ -113,7 +113,7 @@
             margin-top: 20px;
         }
         .register-footer a {
-            color: #667eea;
+            color: #00BCD4;
             text-decoration: none;
             font-weight: 600;
         }

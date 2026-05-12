@@ -13,7 +13,7 @@
             padding: 20px;
         }
         .navbar-custom {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             padding: 15px 30px;
             border-radius: 0;
             display: flex;

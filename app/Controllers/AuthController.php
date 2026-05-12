@@ -79,11 +79,37 @@ class AuthController extends BaseController
             'username' => 'required|min_length[3]|max_length[100]|is_unique[users.username]',
             'genre'    => 'required|in_list[M,F]',
             'password' => 'required|min_length[6]',
-            'confirm_password' => 'required|matches[password]',
         ];
 
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        $messages = [
+            'nom' => [
+                'required' => 'Le nom complet est requis',
+                'min_length' => 'Le nom doit avoir au moins 3 caractères',
+                'max_length' => 'Le nom ne peut pas dépasser 100 caractères',
+            ],
+            'email' => [
+                'required' => 'L\'email est requis',
+                'valid_email' => 'Veuillez entrer un email valide',
+                'is_unique' => 'Cet email est déjà utilisé',
+            ],
+            'username' => [
+                'required' => 'Le nom d\'utilisateur est requis',
+                'min_length' => 'Le nom d\'utilisateur doit avoir au moins 3 caractères',
+                'max_length' => 'Le nom d\'utilisateur ne peut pas dépasser 100 caractères',
+                'is_unique' => 'Ce nom d\'utilisateur est déjà utilisé',
+            ],
+            'genre' => [
+                'required' => 'Veuillez sélectionner un genre',
+                'in_list' => 'Le genre doit être Homme ou Femme',
+            ],
+            'password' => [
+                'required' => 'Le mot de passe est requis',
+                'min_length' => 'Le mot de passe doit avoir au moins 6 caractères',
+            ],
+        ];
+
+        if (!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('validation', $this->validator);
         }
 
         // Sauvegarder dans session temporaire
@@ -141,10 +167,23 @@ class AuthController extends BaseController
 
         // Creer l'utilisateur
         if ($this->userModel->insert($userData)) {
+            // Recuperer les donnees du nouvel utilisateur
+            $newUser = $this->userModel->where('username', $userData['username'])->first();
+
+            // Connexion automatique
+            session()->set([
+                'user_id'    => $newUser['id'],
+                'username'   => $newUser['username'],
+                'email'      => $newUser['email'],
+                'nom'        => $newUser['nom'],
+                'role'       => $newUser['role'],
+                'isLoggedIn' => true,
+            ]);
+
             // Effacer la session temporaire
             session()->remove(['temp_nom', 'temp_email', 'temp_username', 'temp_genre', 'temp_password']);
 
-            return redirect()->to('/login')->with('success', 'Inscription reussie ! Veuillez vous connecter.');
+            return redirect()->to('/dashboard')->with('success', 'Bienvenue ! Votre compte a été créé avec succès.');
         } else {
             return redirect()->back()->with('error', 'Erreur lors de l\'inscription');
         }

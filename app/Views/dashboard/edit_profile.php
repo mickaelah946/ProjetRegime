@@ -21,7 +21,7 @@
             padding: 28px;
         }
         .btn-main {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             color: #fff;
             border: 0;
             font-weight: 600;

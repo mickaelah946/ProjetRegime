@@ -45,18 +45,18 @@
         }
         .objectif-item:hover {
             background: #f0f1ff;
-            border-color: #667eea;
+            border-color: #00BCD4;
         }
         .objectif-item input[type="checkbox"] {
             width: 20px;
             height: 20px;
             margin-right: 15px;
             cursor: pointer;
-            accent-color: #667eea;
+            accent-color: #00BCD4;
         }
         .objectif-item.checked {
             background: #e6e9ff;
-            border-color: #667eea;
+            border-color: #00BCD4;
         }
         .objectif-label {
             margin: 0;
@@ -77,7 +77,7 @@
             border-radius: 8px;
             margin-bottom: 20px;
             font-weight: 600;
-            color: #667eea;
+            color: #00BCD4;
         }
         .count-info.complete {
             background: #c8e6c9;
@@ -90,7 +90,7 @@
         }
         .btn-save {
             flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             color: white;
             border: none;
             padding: 12px;

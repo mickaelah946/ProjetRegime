@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -38,12 +38,12 @@
             margin-bottom: 15px;
         }
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+            border-color: #00BCD4;
+            box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
         }
         .btn-login {
             width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
             color: white;
             border: none;
             padding: 12px;
@@ -54,7 +54,7 @@
         }
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
         }
         .login-footer {
             text-align: center;
@@ -65,7 +65,7 @@
             margin: 0;
         }
         .login-footer a {
-            color: #667eea;
+            color: #00BCD4;
             text-decoration: none;
             font-weight: 600;
         }
