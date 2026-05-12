@@ -79,7 +79,7 @@
     <div class="login-container">
         <div class="login-header">
             <h2>🍽️ RegimeApp</h2>
-            <p class="text-muted">Trouvez votre régime idéal</p>
+            <p class="text-muted">Trouvez votre regime ideal</p>
         </div>
 
         <?php if (session()->getFlashdata('error')): ?>
@@ -117,8 +117,9 @@
         </form>
 
         <div class="login-footer">
-            <p>Pas encore inscrit ? <a href="<?= base_url('register/step1') ?>">Créer un compte</a></p>
+            <p>Pas encore inscrit ? <a href="<?= base_url('register/step1') ?>">Creer un compte</a></p>
         </div>
     </div>
 </body>
 </html>
+

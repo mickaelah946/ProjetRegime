@@ -17,13 +17,13 @@ class RegimeModel extends Model
     protected $updatedField  = 'updated_at';
 
     /**
-     * Récupérer les régimes recommandés basés sur les objectifs de l'utilisateur
+     * Recuperer les regimes recommandes bases sur les objectifs de l'utilisateur
      */
     public function getRecommendedRegimes($userId)
     {
         $db = Database::connect();
         
-        // Récupérer les objectifs de l'utilisateur
+        // Recuperer les objectifs de l'utilisateur
         $userObjectifs = $db->table('user_objectifs')
                             ->select('objectif_id')
                             ->where('user_id', $userId)
@@ -31,16 +31,16 @@ class RegimeModel extends Model
                             ->getResultArray();
 
         if (empty($userObjectifs)) {
-            // Si pas d'objectifs, retourner tous les régimes
+            // Si pas d'objectifs, retourner tous les regimes
             return $this->findAll();
         }
 
         $objectifIds = array_column($userObjectifs, 'objectif_id');
 
         // Logique : 
-        // - Objectif 1 (Augmenter poids) → régimes de type 'prise'
-        // - Objectif 2 (Réduire poids) → régimes de type 'perte'
-        // - Objectif 3 (Atteindre IMC idéal) → tous les types selon besoin
+        // - Objectif 1 (Augmenter poids) → regimes de type 'prise'
+        // - Objectif 2 (Reduire poids) → regimes de type 'perte'
+        // - Objectif 3 (Atteindre IMC ideal) → tous les types selon besoin
 
         $types = [];
         
@@ -48,10 +48,10 @@ class RegimeModel extends Model
             $types[] = 'prise'; // Augmenter poids
         }
         if (in_array(2, $objectifIds)) {
-            $types[] = 'perte'; // Réduire poids
+            $types[] = 'perte'; // Reduire poids
         }
         if (in_array(3, $objectifIds)) {
-            // Atteindre IMC idéal - afficher tous les types
+            // Atteindre IMC ideal - afficher tous les types
             $types = ['perte', 'prise', 'maintien'];
         }
 
@@ -63,7 +63,7 @@ class RegimeModel extends Model
     }
 
     /**
-     * Récupérer les régimes actifs d'un utilisateur
+     * Recuperer les regimes actifs d'un utilisateur
      */
     public function getUserRegimes($userId)
     {
@@ -80,7 +80,7 @@ class RegimeModel extends Model
     }
 
     /**
-     * Vérifier si l'utilisateur a déjà sélectionné ce régime
+     * Verifier si l'utilisateur a deja selectionne ce regime
      */
     public function hasUserSelectedRegime($userId, $regimeId)
     {
@@ -92,3 +92,4 @@ class RegimeModel extends Model
                   ->countAllResults() > 0;
     }
 }
+

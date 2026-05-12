@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Reçu Régime</title>
+    <title>Recu Regime</title>
     <style>
         * {
             margin: 0;
@@ -76,11 +76,11 @@
 <body>
     <div class="header">
         <h1>🥗 RegimeApp</h1>
-        <p>Reçu d'Achat - Régime</p>
+        <p>Recu d'Achat - Regime</p>
     </div>
 
     <div class="receipt-number">
-        Numéro de reçu : <?= $receiptNumber ?>
+        Numero de recu : <?= $receiptNumber ?>
     </div>
 
     <div class="section">
@@ -98,10 +98,10 @@
     </div>
 
     <div class="section">
-        <div class="section-title">Détails du Régime</div>
+        <div class="section-title">Details du Regime</div>
         <table>
             <tr>
-                <td class="label">Nom du Régime :</td>
+                <td class="label">Nom du Regime :</td>
                 <td><?= htmlspecialchars($regime['nom'] ?? 'N/A') ?></td>
             </tr>
             <tr>
@@ -109,7 +109,7 @@
                 <td><?= htmlspecialchars($regime['type'] ?? 'N/A') ?></td>
             </tr>
             <tr>
-                <td class="label">Durée :</td>
+                <td class="label">Duree :</td>
                 <td><?= $regime['duree_jours'] ?> jours</td>
             </tr>
             <tr>
@@ -124,7 +124,7 @@
     </div>
 
     <div class="section">
-        <div class="section-title">Détails de la Transaction</div>
+        <div class="section-title">Details de la Transaction</div>
         <table>
             <tr>
                 <td class="label">Date d'Achat :</td>
@@ -132,14 +132,15 @@
             </tr>
             <tr>
                 <td class="label">Statut :</td>
-                <td>✓ Approuvé</td>
+                <td>✓ Approuve</td>
             </tr>
         </table>
     </div>
 
     <div class="footer">
         <p>Merci d'avoir choisi RegimeApp !</p>
-        <p>© RegimeApp 2026 - Tous droits réservés</p>
+        <p>© RegimeApp 2026 - Tous droits reserves</p>
     </div>
 </body>
 </html>
+

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Régimes Actifs - RegimeApp</title>
+    <title>Mes Regimes Actifs - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -180,13 +180,13 @@
             <span>Bienvenue, <?= htmlspecialchars(session()->get('nom')) ?> !</span>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Déconnexion</button>
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Deconnexion</button>
             </form>
         </div>
     </div>
 
     <div class="container-custom">
-        <h1 class="page-title">📋 Mes Régimes Actifs</h1>
+        <h1 class="page-title">📋 Mes Regimes Actifs</h1>
 
         <?php if (session()->getFlashdata('success')): ?>
             <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
@@ -202,11 +202,11 @@
                 <strong>Solde:</strong> <span style="color: #667eea; font-size: 1.2rem; font-weight: 700;"><?= number_format($user['solde_portefeuille'], 2) ?>€</span>
             </div>
             <div>
-                <strong>Régimes Actifs:</strong> <span style="color: #27ae60; font-size: 1.2rem; font-weight: 700;"><?= count($userRegimes) ?></span>
+                <strong>Regimes Actifs:</strong> <span style="color: #27ae60; font-size: 1.2rem; font-weight: 700;"><?= count($userRegimes) ?></span>
             </div>
         </div>
 
-        <!-- Régimes actifs -->
+        <!-- Regimes actifs -->
         <?php if (!empty($userRegimes)): ?>
             <div class="regimes-grid">
                 <?php foreach ($userRegimes as $regime): ?>
@@ -220,26 +220,26 @@
 
                             <div class="regime-stats">
                                 <div class="stat-item">
-                                    <div class="stat-label">Durée</div>
+                                    <div class="stat-label">Duree</div>
                                     <div class="stat-value"><?= $regime['duree_jours'] ?> j</div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-label">Variation</div>
-                                    <div class="stat-value"><?= $regime['poids_variation_min'] ?> à <?= $regime['poids_variation_max'] ?> kg</div>
+                                    <div class="stat-value"><?= $regime['poids_variation_min'] ?> a <?= $regime['poids_variation_max'] ?> kg</div>
                                 </div>
                             </div>
 
                             <div class="regime-details">
                                 <div class="detail-row">
-                                    <span class="detail-label">📅 Début:</span>
+                                    <span class="detail-label">📅 Debut:</span>
                                     <span class="detail-value"><?= date('d/m/Y', strtotime($regime['date_selection'])) ?></span>
                                 </div>
                                 <div class="detail-row">
-                                    <span class="detail-label">📅 Fin prévue:</span>
+                                    <span class="detail-label">📅 Fin prevue:</span>
                                     <span class="detail-value"><?= date('d/m/Y', strtotime($regime['date_fin_prevu'])) ?></span>
                                 </div>
                                 <div class="detail-row">
-                                    <span class="detail-label">💰 Payé:</span>
+                                    <span class="detail-label">💰 Paye:</span>
                                     <span class="detail-value"><?= number_format($regime['prix_paye'], 2) ?>€</span>
                                 </div>
                                 <div class="detail-row">
@@ -250,7 +250,7 @@
 
                             <form method="POST" action="<?= base_url('regime/cancel/' . $regime['user_regime_id']) ?>" style="display: inline;">
                                 <?= csrf_field() ?>
-                                <button type="submit" class="btn-action btn-cancel">Annuler ce régime</button>
+                                <button type="submit" class="btn-action btn-cancel">Annuler ce regime</button>
                             </form>
                         </div>
                     </div>
@@ -259,19 +259,20 @@
         <?php else: ?>
             <div class="empty-state">
                 <div class="empty-state-icon">📭</div>
-                <div class="empty-state-text">Vous n'avez aucun régime actif</div>
-                <p style="color: #999; margin-bottom: 30px;">Parcourez nos régimes recommandés et en sélectionnez un pour commencer !</p>
-                <a href="<?= base_url('regime/browse') ?>" class="btn-action">🎯 Voir les régimes recommandés</a>
+                <div class="empty-state-text">Vous n'avez aucun regime actif</div>
+                <p style="color: #999; margin-bottom: 30px;">Parcourez nos regimes recommandes et en selectionnez un pour commencer !</p>
+                <a href="<?= base_url('regime/browse') ?>" class="btn-action">🎯 Voir les regimes recommandes</a>
             </div>
         <?php endif; ?>
 
         <!-- Boutons de navigation -->
         <div style="text-align: center; margin-top: 40px;">
             <div class="nav-buttons">
-                <a href="<?= base_url('regime/browse') ?>" class="btn-action">← Régimes recommandés</a>
+                <a href="<?= base_url('regime/browse') ?>" class="btn-action">← Regimes recommandes</a>
                 <a href="<?= base_url('dashboard') ?>" class="btn-action">← Retour au Dashboard</a>
             </div>
         </div>
     </div>
 </body>
 </html>
+

@@ -31,7 +31,7 @@ class CreateRegimeTarifs extends Migration
                 'type' => 'INT',
                 'constraint' => 3,
                 'default' => 0,
-                'comment' => 'Réduction en pourcentage',
+                'comment' => 'Reduction en pourcentage',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -54,3 +54,4 @@ class CreateRegimeTarifs extends Migration
         $this->forge->dropTable('regime_tarifs');
     }
 }
+

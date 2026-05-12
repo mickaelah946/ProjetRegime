@@ -96,7 +96,7 @@
 
         <div class="stat-box">
             <div class="stat-value"><?= $totalRegimes ?></div>
-            <div class="stat-label">Régimes Disponibles</div>
+            <div class="stat-label">Regimes Disponibles</div>
         </div>
 
         <div class="stat-box">
@@ -106,14 +106,14 @@
     </div>
 
     <div class="section">
-        <div class="section-title">Détails du Rapport</div>
+        <div class="section-title">Details du Rapport</div>
         <table>
             <tr>
                 <td style="font-weight: bold; width: 40%;">Nombre Total d'Utilisateurs :</td>
                 <td><?= $totalUsers ?></td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">Nombre Total de Régimes :</td>
+                <td style="font-weight: bold;">Nombre Total de Regimes :</td>
                 <td><?= $totalRegimes ?></td>
             </tr>
             <tr>
@@ -128,8 +128,9 @@
     </div>
 
     <div class="footer">
-        <p>Rapport généré le <?= $reportDate ?></p>
-        <p>© RegimeApp 2026 - Tous droits réservés</p>
+        <p>Rapport genere le <?= $reportDate ?></p>
+        <p>© RegimeApp 2026 - Tous droits reserves</p>
     </div>
 </body>
 </html>
+

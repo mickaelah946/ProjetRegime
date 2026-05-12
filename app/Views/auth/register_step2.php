@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription Étape 2 - RegimeApp</title>
+    <title>Inscription etape 2 - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -144,7 +144,7 @@
     <div class="register-container">
         <div class="register-header">
             <h2>🍽️ RegimeApp</h2>
-            <p class="text-muted">Informations de santé</p>
+            <p class="text-muted">Informations de sante</p>
         </div>
 
         <!-- Step Indicator -->
@@ -155,13 +155,13 @@
             </div>
             <div class="step-item active">
                 <div class="step-number">2</div>
-                <p>Santé</p>
+                <p>Sante</p>
             </div>
         </div>
 
         <div class="info-box">
-            <strong>📏 Étape 2 sur 2</strong><br>
-            Veuillez entrer vos informations de santé. Ces données nous permettront de recommander le meilleur régime pour vous.
+            <strong>📏 etape 2 sur 2</strong><br>
+            Veuillez entrer vos informations de sante. Ces donnees nous permettront de recommander le meilleur regime pour vous.
         </div>
 
         <?php if (session()->getFlashdata('error')): ?>
@@ -192,7 +192,7 @@
             <?= csrf_field() ?>
 
             <div class="form-group">
-                <label for="taille" class="form-label">Taille (en mètres)</label>
+                <label for="taille" class="form-label">Taille (en metres)</label>
                 <input 
                     type="number" 
                     step="0.01"
@@ -232,8 +232,9 @@
         </form>
 
         <div class="register-footer">
-            <p>Déjà inscrit ? <a href="<?= base_url('login') ?>">Se connecter</a></p>
+            <p>Deja inscrit ? <a href="<?= base_url('login') ?>">Se connecter</a></p>
         </div>
     </div>
 </body>
 </html>
+

@@ -116,14 +116,14 @@
                 <p class="subtitle">Votre compagnon de fitness personnel</p>
 
                 <?php if (session()->get('isLoggedIn')): ?>
-                    <!-- Utilisateur connecté -->
+                    <!-- Utilisateur connecte -->
                     <div class="user-info">
                         <div class="user-name">Bienvenue, <?= htmlspecialchars(session()->get('nom')) ?> !</div>
                         <div class="user-email"><?= htmlspecialchars(session()->get('email')) ?></div>
                     </div>
 
                     <p style="color: #666; margin-bottom: 20px;">
-                        Prêt à commencer votre transformation ? Accédez à votre dashboard personnalisé.
+                        Pret a commencer votre transformation ? Accedez a votre dashboard personnalise.
                     </p>
 
                     <div class="buttons">
@@ -137,14 +137,14 @@
                     <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                         <?= csrf_field() ?>
                         <button type="submit" class="btn-secondary-custom">
-                            🚪 Se déconnecter
+                            🚪 Se deconnecter
                         </button>
                     </form>
 
                 <?php else: ?>
-                    <!-- Utilisateur non connecté -->
+                    <!-- Utilisateur non connecte -->
                     <p style="color: #666; margin-bottom: 30px;">
-                        Rejoignez des milliers de personnes qui ont transformé leur vie avec nos plans personnalisés.
+                        Rejoignez des milliers de personnes qui ont transforme leur vie avec nos plans personnalises.
                     </p>
 
                     <div class="buttons">
@@ -162,3 +162,4 @@
     </div>
 </body>
 </html>
+

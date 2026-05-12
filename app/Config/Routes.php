@@ -13,7 +13,7 @@ $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::doLogin');
 $routes->post('logout', 'AuthController::logout', ['filter' => 'auth']);
 
-// Registration (2 étapes)
+// Registration (2 etapes)
 $routes->get('register/step1', 'AuthController::registerStep1');
 $routes->post('register/step1', 'AuthController::saveStep1');
 $routes->get('register/step2', 'AuthController::registerStep2');
@@ -82,3 +82,4 @@ $routes->get('/', 'Home::index');
 $routes->get('pdf/invoice/(:num)', 'PdfController::invoiceUser/$1', ['filter' => 'auth']);
 $routes->get('pdf/receipt-regime/(:num)', 'PdfController::receiptRegime/$1', ['filter' => 'auth']);
 $routes->get('pdf/report-admin', 'PdfController::reportAdmin', ['filter' => 'admin']);
+

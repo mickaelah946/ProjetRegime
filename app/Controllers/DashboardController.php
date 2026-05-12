@@ -25,7 +25,7 @@ class DashboardController extends BaseController
     // ============================================
     public function index()
     {
-        // Vérifier authentification
+        // Verifier authentification
         if (!session()->get('isLoggedIn')) {
             return redirect()->to('/login')->with('error', 'Veuillez d\'abord vous connecter');
         }
@@ -39,16 +39,16 @@ class DashboardController extends BaseController
         $user = $this->userModel->find($userId);
 
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+            return redirect()->to('/login')->with('error', 'Utilisateur non trouve');
         }
 
-        // Récupérer les objectifs de l'utilisateur
+        // Recuperer les objectifs de l'utilisateur
         $userObjectifs = $this->objectifModel->getUserObjectifs($userId);
 
         // Calculer l'IMC (poids / (taille * taille))
         $imc = $user['poids'] / ($user['taille'] * $user['taille']);
 
-        // Déterminer la catégorie IMC
+        // Determiner la categorie IMC
         $imcCategorie = $this->getIMCCategorie($imc);
 
         $data = [
@@ -99,12 +99,12 @@ class DashboardController extends BaseController
         // Effacer les anciens objectifs
         $this->objectifModel->deleteUserObjectifs($userId);
 
-        // Insérer les nouveaux
+        // Inserer les nouveaux
         foreach ($selectedObjectifs as $objectifId) {
             $this->objectifModel->addUserObjectif($userId, (int) $objectifId);
         }
 
-        return redirect()->to('/regime/browse')->with('success', 'Objectifs mis à jour ! Découvrez nos régimes recommandés');
+        return redirect()->to('/regime/browse')->with('success', 'Objectifs mis a jour ! Decouvrez nos regimes recommandes');
     }
 
     // ============================================
@@ -123,7 +123,7 @@ class DashboardController extends BaseController
             return redirect()->back()->with('error', 'Veuillez entrer un code');
         }
 
-        // Vérifier le code
+        // Verifier le code
         $codeData = $this->codeModel->where('code', $code)->first();
 
         if (!$codeData) {
@@ -131,7 +131,7 @@ class DashboardController extends BaseController
         }
 
         if ($codeData['valide'] && $codeData['utilisateur_id'] === null) {
-            // Code valide et non utilisé
+            // Code valide et non utilise
             $montant = (float)$codeData['montant'];
             $user = $this->userModel->find($userId);
             $newBalance = $user['solde_portefeuille'] + $montant;
@@ -141,23 +141,23 @@ class DashboardController extends BaseController
                 'solde_portefeuille' => $newBalance
             ]);
 
-            // Marquer le code comme utilisé
+            // Marquer le code comme utilise
             $this->codeModel->update($codeData['id'], [
                 'utilisateur_id' => $userId,
                 'date_utilisation' => date('Y-m-d H:i:s'),
                 'valide' => false,
             ]);
 
-            return redirect()->back()->with('success', "+{$montant}€ ajouté au portefeuille !");
+            return redirect()->back()->with('success', "+{$montant}€ ajoute au portefeuille !");
         } elseif ($codeData['utilisateur_id'] === $userId) {
-            return redirect()->back()->with('error', 'Ce code a déjà été utilisé par vous');
+            return redirect()->back()->with('error', 'Ce code a deja ete utilise par vous');
         } else {
-            return redirect()->back()->with('error', 'Ce code a déjà été utilisé');
+            return redirect()->back()->with('error', 'Ce code a deja ete utilise');
         }
     }
 
     // ============================================
-    // HELPER: Déterminer catégorie IMC
+    // HELPER: Determiner categorie IMC
     // ============================================
     private function getIMCCategorie($imc)
     {
@@ -185,20 +185,20 @@ class DashboardController extends BaseController
         $user = $this->userModel->find($userId);
 
         if ($user['is_gold']) {
-            return redirect()->back()->with('error', 'Vous avez déjà l\'option Gold');
+            return redirect()->back()->with('error', 'Vous avez deja l\'option Gold');
         }
 
         if ($user['solde_portefeuille'] < 9.99) {
             return redirect()->back()->with('error', 'Solde insuffisant (9.99€ requis)');
         }
 
-        // Déduire et activer Gold
+        // Deduire et activer Gold
         $this->userModel->update($userId, [
             'solde_portefeuille' => $user['solde_portefeuille'] - 9.99,
             'is_gold' => true,
         ]);
 
-        return redirect()->back()->with('success', 'Option Gold activée ! 15% de remise sur tous les régimes');
+        return redirect()->back()->with('success', 'Option Gold activee ! 15% de remise sur tous les regimes');
     }
 
     public function editProfile()
@@ -209,7 +209,7 @@ class DashboardController extends BaseController
 
         $user = $this->userModel->find(session()->get('user_id'));
         if (!$user) {
-            return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+            return redirect()->to('/login')->with('error', 'Utilisateur non trouve');
         }
 
         return view('dashboard/edit_profile', ['user' => $user]);
@@ -250,7 +250,7 @@ class DashboardController extends BaseController
         session()->set('nom', $data['nom']);
         session()->set('email', $data['email']);
 
-        return redirect()->to('/dashboard')->with('success', 'Profil mis à jour avec succès');
+        return redirect()->to('/dashboard')->with('success', 'Profil mis a jour avec succes');
     }
 
     // ============================================
@@ -258,14 +258,14 @@ class DashboardController extends BaseController
     // ============================================
     public function validateCodeAjax()
     {
-        // Vérifier si c'est une requête AJAX
+        // Verifier si c'est une requete AJAX
         if (!$this->request->isAJAX()) {
-            return $this->response->setStatusCode(400)->setJSON(['error' => 'Requête invalide']);
+            return $this->response->setStatusCode(400)->setJSON(['error' => 'Requete invalide']);
         }
 
-        // Vérifier authentification
+        // Verifier authentification
         if (!session()->get('isLoggedIn')) {
-            return $this->response->setStatusCode(401)->setJSON(['error' => 'Non authentifié']);
+            return $this->response->setStatusCode(401)->setJSON(['error' => 'Non authentifie']);
         }
 
         $code = trim($this->request->getPost('code'));
@@ -278,7 +278,7 @@ class DashboardController extends BaseController
             ]);
         }
 
-        // Vérifier que le code n'est pas vide
+        // Verifier que le code n'est pas vide
         if (strlen($code) < 3) {
             return $this->response->setJSON([
                 'success' => false,
@@ -296,11 +296,11 @@ class DashboardController extends BaseController
             ]);
         }
 
-        // Vérifier l'état du code
+        // Verifier l'etat du code
         if (!$codeData['valide']) {
             return $this->response->setJSON([
                 'success' => false,
-                'error' => 'Ce code a été désactivé ou est expiré',
+                'error' => 'Ce code a ete desactive ou est expire',
             ]);
         }
 
@@ -308,12 +308,12 @@ class DashboardController extends BaseController
             if ($codeData['utilisateur_id'] == $userId) {
                 return $this->response->setJSON([
                     'success' => false,
-                    'error' => 'Vous avez déjà utilisé ce code',
+                    'error' => 'Vous avez deja utilise ce code',
                 ]);
             } else {
                 return $this->response->setJSON([
                     'success' => false,
-                    'error' => 'Ce code a déjà été utilisé par un autre utilisateur',
+                    'error' => 'Ce code a deja ete utilise par un autre utilisateur',
                 ]);
             }
         }
@@ -323,24 +323,25 @@ class DashboardController extends BaseController
         $user = $this->userModel->find($userId);
         $newBalance = $user['solde_portefeuille'] + $montant;
 
-        // Mettre à jour le solde
+        // Mettre a jour le solde
         $this->userModel->update($userId, [
             'solde_portefeuille' => $newBalance
         ]);
 
-        // Marquer le code comme utilisé
+        // Marquer le code comme utilise
         $this->codeModel->update($codeData['id'], [
             'utilisateur_id' => $userId,
             'date_utilisation' => date('Y-m-d H:i:s'),
             'valide' => false,
         ]);
 
-        // Retourner succès
+        // Retourner succes
         return $this->response->setJSON([
             'success' => true,
-            'message' => "+{$montant}€ ajouté à votre portefeuille !",
+            'message' => "+{$montant}€ ajoute a votre portefeuille !",
             'newBalance' => round($newBalance, 2),
             'montant' => $montant,
         ]);
     }
 }
+

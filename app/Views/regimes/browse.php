@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parcourir les Régimes - RegimeApp</title>
+    <title>Parcourir les Regimes - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -242,15 +242,15 @@
             <span>Bienvenue, <?= htmlspecialchars(session()->get('nom')) ?> !</span>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Déconnexion</button>
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Deconnexion</button>
             </form>
         </div>
     </div>
 
     <div class="container-custom">
         <div class="page-header">
-            <h1 class="page-title">🎯 Régimes Recommandés Pour Vous</h1>
-            <a href="<?= base_url('activity/browse') ?>" class="btn-secondary">💪 Voir les activités</a>
+            <h1 class="page-title">🎯 Regimes Recommandes Pour Vous</h1>
+            <a href="<?= base_url('activity/browse') ?>" class="btn-secondary">💪 Voir les activites</a>
         </div>
 
         <?php if (session()->getFlashdata('success')): ?>
@@ -282,7 +282,7 @@
             </div>
         </div>
 
-        <!-- Régimes recommandés -->
+        <!-- Regimes recommandes -->
         <div class="regimes-grid">
             <?php foreach ($regimes as $regime): ?>
                 <div class="regime-card">
@@ -296,12 +296,12 @@
 
                         <div class="regime-stats">
                             <div class="stat-item">
-                                <div class="stat-label">Durée</div>
+                                <div class="stat-label">Duree</div>
                                 <div class="stat-value"><?= $regime['duree_jours'] ?> j</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Variation</div>
-                                <div class="stat-value"><?= $regime['poids_variation_min'] ?> à <?= $regime['poids_variation_max'] ?> kg</div>
+                                <div class="stat-value"><?= $regime['poids_variation_min'] ?> a <?= $regime['poids_variation_max'] ?> kg</div>
                             </div>
                         </div>
 
@@ -324,9 +324,9 @@
                             </div>
                         </div>
 
-                        <!-- Sélecteur de durée et tarifs -->
+                        <!-- Selecteur de duree et tarifs -->
                         <div style="margin-bottom: 15px;">
-                            <label style="font-weight: 600; color: #333; display: block; margin-bottom: 8px;">📅 Choisir la durée:</label>
+                            <label style="font-weight: 600; color: #333; display: block; margin-bottom: 8px;">📅 Choisir la duree:</label>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                                 <?php 
                                     // Tarifs disponibles
@@ -354,10 +354,10 @@
                             </div>
                         </div>
 
-                        <!-- Affichage du prix sélectionné -->
+                        <!-- Affichage du prix selectionne -->
                         <div class="regime-footer" style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 12px; background: #f8f9fa; border-radius: 5px;">
-                                <div style="font-size: 0.85rem; color: #666; margin-bottom: 5px;">Prix pour la durée sélectionnée:</div>
+                                <div style="font-size: 0.85rem; color: #666; margin-bottom: 5px;">Prix pour la duree selectionnee:</div>
                                 <div style="display: flex; align-items: center; gap: 10px;">
                                     <?php if ($user['is_gold']): ?>
                                         <span class="prix-original" id="prix-original-<?= $regime['id'] ?>">
@@ -379,13 +379,13 @@
                                 </div>
                                 <?php if (isset($regime['tariffs'][$selectedDuree]['reduction']) && $regime['tariffs'][$selectedDuree]['reduction'] > 0): ?>
                                     <div style="font-size: 0.8rem; color: #27ae60; margin-top: 5px;">
-                                        💰 Réduction: -<?= $regime['tariffs'][$selectedDuree]['reduction'] ?>%
+                                        💰 Reduction: -<?= $regime['tariffs'][$selectedDuree]['reduction'] ?>%
                                     </div>
                                 <?php endif; ?>
                             </div>
 
                             <?php if ($regime['already_selected']): ?>
-                                <span class="selected-badge">✓ Sélectionné</span>
+                                <span class="selected-badge">✓ Selectionne</span>
                             <?php else: ?>
                                 <form method="POST" action="<?= base_url('regime/select/' . $regime['id']) ?>" style="width: 100%;">
                                     <?= csrf_field() ?>
@@ -399,10 +399,10 @@
             <?php endforeach; ?>
         </div>
 
-        <!-- Régimes actifs -->
+        <!-- Regimes actifs -->
         <?php if (!empty($userRegimes)): ?>
             <div style="background: white; padding: 30px; border-radius: 10px; margin-top: 40px;">
-                <h2 style="margin-bottom: 20px; color: #333;">📋 Vos Régimes Actifs</h2>
+                <h2 style="margin-bottom: 20px; color: #333;">📋 Vos Regimes Actifs</h2>
                 <div class="regimes-grid" style="margin-bottom: 0;">
                     <?php foreach ($userRegimes as $userRegime): ?>
                         <div class="regime-card">
@@ -411,8 +411,8 @@
                                 <span style="font-size: 0.9rem;">Depuis le <?= date('d/m/Y', strtotime($userRegime['date_selection'])) ?></span>
                             </div>
                             <div class="regime-body">
-                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Fin prévue: <strong><?= date('d/m/Y', strtotime($userRegime['date_fin_prevu'])) ?></strong></p>
-                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Prix payé: <strong><?= number_format($userRegime['prix_paye'], 2) ?>€</strong></p>
+                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Fin prevue: <strong><?= date('d/m/Y', strtotime($userRegime['date_fin_prevu'])) ?></strong></p>
+                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Prix paye: <strong><?= number_format($userRegime['prix_paye'], 2) ?>€</strong></p>
                                 <form method="POST" action="<?= base_url('regime/cancel/' . $userRegime['user_regime_id']) ?>" style="display: inline;">
                                     <?= csrf_field() ?>
                                     <button type="submit" class="btn-select" style="background: #e74c3c;">Annuler</button>
@@ -433,7 +433,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Gestion de la sélection de durée
+        // Gestion de la selection de duree
         function selectDuration(button) {
             const regimeId = button.dataset.regime;
             const duration = button.dataset.duration;
@@ -442,19 +442,19 @@
             const reduction = parseInt(button.dataset.reduction);
             const isGold = button.dataset.isGold === '1';
 
-            // Désactiver tous les boutons de ce régime
+            // Desactiver tous les boutons de ce regime
             document.querySelectorAll(`.duration-btn[data-regime="${regimeId}"]`).forEach(btn => {
                 btn.style.background = 'white';
                 btn.style.color = '#667eea';
                 btn.style.borderColor = '#667eea';
             });
 
-            // Activer le bouton cliqué
+            // Activer le bouton clique
             button.style.background = '#667eea';
             button.style.color = 'white';
             button.style.borderColor = '#667eea';
 
-            // Mettre à jour le prix affiché
+            // Mettre a jour le prix affiche
             const priceElement = document.getElementById(`prix-${regimeId}`);
             const priceOriginalElement = document.getElementById(`prix-original-${regimeId}`);
             const durationInput = document.getElementById(`duree-${regimeId}`);
@@ -476,22 +476,22 @@
                 submitButton.textContent = `Choisir (${duration} j)`;
             }
 
-            // Mettre à jour le texte de réduction si présent
+            // Mettre a jour le texte de reduction si present
             const reductionElement = document.querySelector(`form[action*="regime/select/${regimeId}"] ~ .reduction-text`);
             if (reduction > 0) {
-                // Vous pouvez afficher la réduction ici si nécessaire
+                // Vous pouvez afficher la reduction ici si necessaire
             }
         }
 
         // Initialiser les premiers boutons
         window.addEventListener('load', function() {
             document.querySelectorAll('.duration-btn').forEach((btn, index) => {
-                // Activer le premier bouton de chaque régime
+                // Activer le premier bouton de chaque regime
                 const regimeId = btn.dataset.regime;
                 const prevBtn = btn.previousElementSibling;
                 
                 if (!prevBtn || prevBtn.dataset.regime !== regimeId) {
-                    // C'est le premier bouton de ce régime
+                    // C'est le premier bouton de ce regime
                     selectDuration(btn);
                 }
             });
@@ -499,3 +499,4 @@
     </script>
 </body>
 </html>
+

@@ -95,7 +95,7 @@
     </div>
 
     <div class="section">
-        <div class="section-title">Données Compte</div>
+        <div class="section-title">Donnees Compte</div>
         <table>
             <tr>
                 <td class="label">Solde Portefeuille :</td>
@@ -106,7 +106,7 @@
                 <td><?= $user['is_gold'] ? '✓ Oui' : 'Non' ?></td>
             </tr>
             <tr>
-                <td class="label">Rôle :</td>
+                <td class="label">Role :</td>
                 <td><?= htmlspecialchars($user['role'] ?? 'user') ?></td>
             </tr>
             <tr>
@@ -117,8 +117,9 @@
     </div>
 
     <div class="footer">
-        <p>Généré le <?= $generatedAt ?></p>
-        <p>© RegimeApp 2026 - Tous droits réservés</p>
+        <p>Genere le <?= $generatedAt ?></p>
+        <p>© RegimeApp 2026 - Tous droits reserves</p>
     </div>
 </body>
 </html>
+

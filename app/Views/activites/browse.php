@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parcourir les Activités - RegimeApp</title>
+    <title>Parcourir les Activites - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -222,15 +222,15 @@
             <span>Bienvenue, <?= htmlspecialchars(session()->get('nom')) ?> !</span>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Déconnexion</button>
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer; text-decoration: underline;">Deconnexion</button>
             </form>
         </div>
     </div>
 
     <div class="container-custom">
         <div class="page-header">
-            <h1 class="page-title">💪 Activités Physiques Recommandées</h1>
-            <a href="<?= base_url('regime/browse') ?>" class="btn-secondary">🥗 Voir les régimes</a>
+            <h1 class="page-title">💪 Activites Physiques Recommandees</h1>
+            <a href="<?= base_url('regime/browse') ?>" class="btn-secondary">🥗 Voir les regimes</a>
         </div>
 
         <?php if (session()->getFlashdata('success')): ?>
@@ -262,7 +262,7 @@
             </div>
         </div>
 
-        <!-- Activités recommandées -->
+        <!-- Activites recommandees -->
         <div class="activites-grid">
             <?php foreach ($activites as $activite): ?>
                 <div class="activite-card">
@@ -276,7 +276,7 @@
 
                         <div class="activite-stats">
                             <div class="stat-item">
-                                <div class="stat-label">Durée</div>
+                                <div class="stat-label">Duree</div>
                                 <div class="stat-value"><?= $activite['duree_jours'] ?> j</div>
                             </div>
                             <div class="stat-item">
@@ -285,14 +285,14 @@
                             </div>
                         </div>
 
-                        <!-- Détails -->
+                        <!-- Details -->
                         <div class="activite-details">
                             <div class="detail-row">
                                 <span>Type:</span>
                                 <span style="font-weight: 600; text-transform: capitalize;"><?= $activite['type'] ?></span>
                             </div>
                             <div class="detail-row">
-                                <span>Intensité:</span>
+                                <span>Intensite:</span>
                                 <span style="font-weight: 600; text-transform: capitalize;"><?= $activite['intensite'] ?></span>
                             </div>
                         </div>
@@ -307,7 +307,7 @@
                             </div>
 
                             <?php if ($activite['already_selected']): ?>
-                                <span class="selected-badge">✓ Sélectionnée</span>
+                                <span class="selected-badge">✓ Selectionnee</span>
                             <?php else: ?>
                                 <form method="POST" action="<?= base_url('activity/select/' . $activite['id']) ?>" style="display: inline;">
                                     <?= csrf_field() ?>
@@ -320,10 +320,10 @@
             <?php endforeach; ?>
         </div>
 
-        <!-- Activités actives -->
+        <!-- Activites actives -->
         <?php if (!empty($userActivites)): ?>
             <div style="background: white; padding: 30px; border-radius: 10px; margin-top: 40px;">
-                <h2 style="margin-bottom: 20px; color: #333;">📋 Vos Activités Actives</h2>
+                <h2 style="margin-bottom: 20px; color: #333;">📋 Vos Activites Actives</h2>
                 <div class="activites-grid" style="margin-bottom: 0;">
                     <?php foreach ($userActivites as $userActivite): ?>
                         <div class="activite-card">
@@ -332,8 +332,8 @@
                                 <span style="font-size: 0.9rem;">Depuis le <?= date('d/m/Y', strtotime($userActivite['date_selection'])) ?></span>
                             </div>
                             <div class="activite-body">
-                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Fin prévue: <strong><?= date('d/m/Y', strtotime($userActivite['date_fin_prevu'])) ?></strong></p>
-                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Prix payé: <strong><?= number_format($userActivite['prix_paye'], 2) ?>€</strong></p>
+                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Fin prevue: <strong><?= date('d/m/Y', strtotime($userActivite['date_fin_prevu'])) ?></strong></p>
+                                <p style="margin: 0; color: #666; margin-bottom: 15px;">Prix paye: <strong><?= number_format($userActivite['prix_paye'], 2) ?>€</strong></p>
                                 <form method="POST" action="<?= base_url('activity/cancel/' . $userActivite['user_activite_id']) ?>" style="display: inline;">
                                     <?= csrf_field() ?>
                                     <button type="submit" class="btn-select" style="background: #e74c3c;">Annuler</button>
@@ -348,11 +348,12 @@
         <!-- Boutons de navigation -->
         <div style="text-align: center; margin-top: 40px;">
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <a href="<?= base_url('activity/active') ?>" class="btn-select">📋 Mes activités actives</a>
-                <a href="<?= base_url('regime/browse') ?>" class="btn-select">🥗 Voir les régimes</a>
+                <a href="<?= base_url('activity/active') ?>" class="btn-select">📋 Mes activites actives</a>
+                <a href="<?= base_url('regime/browse') ?>" class="btn-select">🥗 Voir les regimes</a>
                 <a href="<?= base_url('dashboard') ?>" class="btn-select">← Retour au Dashboard</a>
             </div>
         </div>
     </div>
 </body>
 </html>
+

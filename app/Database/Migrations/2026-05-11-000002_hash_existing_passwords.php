@@ -8,7 +8,7 @@ class HashExistingPasswords extends Migration
 {
     public function up()
     {
-        // Récupérer tous les utilisateurs avec des mots de passe en texte clair
+        // Recuperer tous les utilisateurs avec des mots de passe en texte clair
         $db = \Config\Database::connect();
         $users = $db->table('users')->get()->getResultArray();
 
@@ -29,3 +29,4 @@ class HashExistingPasswords extends Migration
         // Cette migration n'est qu'une direction
     }
 }
+

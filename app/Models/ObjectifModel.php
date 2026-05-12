@@ -14,7 +14,7 @@ class ObjectifModel extends Model
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
 
-    // Récupérer les objectifs d'un user
+    // Recuperer les objectifs d'un user
     public function getUserObjectifs($userId)
     {
         return $this->select('objectifs.*')
@@ -31,7 +31,7 @@ class ObjectifModel extends Model
                         ->delete();
     }
 
-    // Insérer un user objectif
+    // Inserer un user objectif
     public function addUserObjectif($userId, $objectifId)
     {
         return $this->db->table('user_objectifs')->insert([
@@ -40,3 +40,4 @@ class ObjectifModel extends Model
         ]);
     }
 }
+

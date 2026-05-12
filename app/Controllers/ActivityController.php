@@ -21,7 +21,7 @@ class ActivityController extends BaseController
     }
 
     /**
-     * Afficher les activités recommandées
+     * Afficher les activites recommandees
      */
     public function browse()
     {
@@ -34,10 +34,10 @@ class ActivityController extends BaseController
             $user = $this->userModel->find($userId);
 
             if (!$user) {
-                return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+                return redirect()->to('/login')->with('error', 'Utilisateur non trouve');
             }
 
-            // Récupérer les activités recommandées
+            // Recuperer les activites recommandees
             $activites = $this->activiteModel->getRecommendedActivities($userId);
             $userActivites = $this->activiteModel->getUserActivities($userId);
             $userObjectifs = $this->objectifModel->getUserObjectifs($userId);
@@ -66,7 +66,7 @@ class ActivityController extends BaseController
     }
 
     /**
-     * Sélectionner une activité
+     * Selectionner une activite
      */
     public function select($activiteId)
     {
@@ -80,12 +80,12 @@ class ActivityController extends BaseController
             $activite = $this->activiteModel->find($activiteId);
 
             if (!$activite) {
-                return redirect()->back()->with('error', 'Activité non trouvée');
+                return redirect()->back()->with('error', 'Activite non trouvee');
             }
 
-            // Vérifier si déjà sélectionnée
+            // Verifier si deja selectionnee
             if ($this->activiteModel->hasUserSelectedActivity($userId, $activiteId)) {
-                return redirect()->back()->with('error', 'Vous avez déjà cette activité active');
+                return redirect()->back()->with('error', 'Vous avez deja cette activite active');
             }
 
             // Calculer le prix avec remise Gold
@@ -94,12 +94,12 @@ class ActivityController extends BaseController
                 $prix_paye = round($prix_paye * 0.85, 2); // 15% de remise
             }
 
-            // Vérifier le solde
+            // Verifier le solde
             if ($user['solde_portefeuille'] < $prix_paye) {
                 return redirect()->back()->with('error', "Solde insuffisant. Vous avez {$user['solde_portefeuille']}€, il en faut {$prix_paye}€");
             }
 
-            // Insérer l'activité pour l'utilisateur
+            // Inserer l'activite pour l'utilisateur
             $db = Database::connect();
             $duree_jours = (int)$activite['duree_jours'];
             $db->table('user_activites')->insert([
@@ -111,20 +111,20 @@ class ActivityController extends BaseController
                 'statut' => 'actif',
             ]);
 
-            // Déduire du solde
+            // Deduire du solde
             $newBalance = $user['solde_portefeuille'] - $prix_paye;
             $this->userModel->update($userId, [
                 'solde_portefeuille' => $newBalance,
             ]);
 
-            return redirect()->to('/activity/browse')->with('success', "Activité '{$activite['nom']}' sélectionnée ! -{$prix_paye}€");
+            return redirect()->to('/activity/browse')->with('success', "Activite '{$activite['nom']}' selectionnee ! -{$prix_paye}€");
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Erreur: ' . $e->getMessage());
         }
     }
 
     /**
-     * Annuler une activité
+     * Annuler une activite
      */
     public function cancel($userActivityId)
     {
@@ -142,15 +142,15 @@ class ActivityController extends BaseController
                             ->getRowArray();
 
             if (!$userActivity) {
-                return redirect()->back()->with('error', 'Activité non trouvée');
+                return redirect()->back()->with('error', 'Activite non trouvee');
             }
 
-            // Mettre à jour le statut
+            // Mettre a jour le statut
             $db->table('user_activites')->where('id', $userActivityId)->update([
                 'statut' => 'annule'
             ]);
 
-            // Rembourser 50% du prix payé
+            // Rembourser 50% du prix paye
             $remboursement = $userActivity['prix_paye'] * 0.5;
             $user = $this->userModel->find($userId);
             $newBalance = $user['solde_portefeuille'] + $remboursement;
@@ -158,14 +158,14 @@ class ActivityController extends BaseController
                 'solde_portefeuille' => $newBalance,
             ]);
 
-            return redirect()->to('/activity/browse')->with('success', "Activité annulée. Remboursement de {$remboursement}€");
+            return redirect()->to('/activity/browse')->with('success', "Activite annulee. Remboursement de {$remboursement}€");
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Erreur: ' . $e->getMessage());
         }
     }
 
     /**
-     * Afficher les activités actives de l'utilisateur
+     * Afficher les activites actives de l'utilisateur
      */
     public function active()
     {
@@ -178,7 +178,7 @@ class ActivityController extends BaseController
             $user = $this->userModel->find($userId);
 
             if (!$user) {
-                return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+                return redirect()->to('/login')->with('error', 'Utilisateur non trouve');
             }
 
             $userActivites = $this->activiteModel->getUserActivities($userId);
@@ -194,3 +194,4 @@ class ActivityController extends BaseController
         }
     }
 }
+

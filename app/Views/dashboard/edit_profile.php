@@ -62,7 +62,7 @@
                 <?php $genre = old('genre', $user['genre']); ?>
                 <select name="genre" class="form-select" required>
                     <option value="M" <?= $genre === 'M' ? 'selected' : '' ?>>Masculin</option>
-                    <option value="F" <?= $genre === 'F' ? 'selected' : '' ?>>Féminin</option>
+                    <option value="F" <?= $genre === 'F' ? 'selected' : '' ?>>Feminin</option>
                 </select>
             </div>
             <div class="col-md-4">
@@ -85,3 +85,4 @@
     </div>
 </body>
 </html>
+

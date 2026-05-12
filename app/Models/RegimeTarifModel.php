@@ -51,7 +51,7 @@ class RegimeTarifModel extends Model
     protected $afterDelete = [];
 
     /**
-     * Récupère les tarifs d'un régime
+     * Recupere les tarifs d'un regime
      */
     public function getByRegime($regimeId)
     {
@@ -61,7 +61,7 @@ class RegimeTarifModel extends Model
     }
 
     /**
-     * Obtient le prix d'un régime pour une durée donnée
+     * Obtient le prix d'un regime pour une duree donnee
      */
     public function getPrix($regimeId, $dureeJours)
     {
@@ -73,12 +73,12 @@ class RegimeTarifModel extends Model
     }
 
     /**
-     * Initialise les tarifs par défaut pour un nouveau régime
+     * Initialise les tarifs par defaut pour un nouveau regime
      */
     public function initializeTariffs($regimeId, $basePrice)
     {
         $durees = [7, 14, 30, 90];
-        $reductions = [0, 5, 10, 15]; // % de réduction progressif
+        $reductions = [0, 5, 10, 15]; // % de reduction progressif
 
         foreach ($durees as $index => $duree) {
             $prix = $basePrice * ($duree / 7); // Calcul proportionnel
@@ -93,3 +93,4 @@ class RegimeTarifModel extends Model
         }
     }
 }
+

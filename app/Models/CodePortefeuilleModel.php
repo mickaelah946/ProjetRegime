@@ -22,19 +22,19 @@ class CodePortefeuilleModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    // Récupérer un code par son code
+    // Recuperer un code par son code
     public function findByCode($code)
     {
         return $this->where('code', $code)->first();
     }
 
-    // Récupérer les codes utilisés par un user
+    // Recuperer les codes utilises par un user
     public function getUserCodes($userId)
     {
         return $this->where('utilisateur_id', $userId)->findAll();
     }
 
-    // Récupérer les codes disponibles (non utilisés et valides)
+    // Recuperer les codes disponibles (non utilises et valides)
     public function getAvailableCodes()
     {
         return $this->where('utilisateur_id', NULL)
@@ -42,3 +42,4 @@ class CodePortefeuilleModel extends Model
                     ->findAll();
     }
 }
+

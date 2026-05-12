@@ -91,7 +91,7 @@
             <a href="<?= base_url('admin') ?>">← Retour Dashboard</a>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Déconnexion</button>
+                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Deconnexion</button>
             </form>
         </div>
     </div>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-dark"><?= isset($editingCode) && $editingCode ? 'Mettre à jour' : 'Ajouter' ?></button>
+                    <button type="submit" class="btn btn-dark"><?= isset($editingCode) && $editingCode ? 'Mettre a jour' : 'Ajouter' ?></button>
                     <?php if (isset($editingCode) && $editingCode): ?>
                         <a href="<?= base_url('admin/codes') ?>" class="btn btn-outline-secondary">Annuler</a>
                     <?php endif; ?>
@@ -147,9 +147,9 @@
                         <th>Code</th>
                         <th>Montant</th>
                         <th>Statut</th>
-                        <th>Utilisé Par</th>
+                        <th>Utilise Par</th>
                         <th>Date Utilisation</th>
-                        <th>Date Création</th>
+                        <th>Date Creation</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -162,7 +162,7 @@
                                 <?php if ($code['valide'] == 1): ?>
                                     <span class="badge badge-valide">✓ Valide</span>
                                 <?php else: ?>
-                                    <span class="badge badge-utilisee">✗ Utilisée</span>
+                                    <span class="badge badge-utilisee">✗ Utilisee</span>
                                 <?php endif; ?>
                             </td>
                             <td>
@@ -185,7 +185,7 @@
                                 <?php if (empty($code['utilisateur_id'])): ?>
                                     <form method="POST" action="<?= base_url('admin/codes/toggle/' . $code['id']) ?>" style="display:inline;">
                                         <?= csrf_field() ?>
-                                        <button type="submit" class="btn btn-sm btn-warning"><?= $code['valide'] ? 'Désactiver' : 'Activer' ?></button>
+                                        <button type="submit" class="btn btn-sm btn-warning"><?= $code['valide'] ? 'Desactiver' : 'Activer' ?></button>
                                     </form>
                                 <?php endif; ?>
                                 <form method="POST" action="<?= base_url('admin/codes/delete/' . $code['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer ce code ?');">
@@ -212,3 +212,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

@@ -17,13 +17,13 @@ class ActiviteModel extends Model
     protected $updatedField  = 'updated_at';
 
     /**
-     * Récupérer les activités recommandées basées sur les objectifs
+     * Recuperer les activites recommandees basees sur les objectifs
      */
     public function getRecommendedActivities($userId)
     {
         $db = Database::connect();
         
-        // Récupérer les objectifs de l'utilisateur
+        // Recuperer les objectifs de l'utilisateur
         $userObjectifs = $db->table('user_objectifs')
                             ->select('objectif_id')
                             ->where('user_id', $userId)
@@ -38,8 +38,8 @@ class ActiviteModel extends Model
 
         // Logique :
         // - Objectif 1 (Augmenter poids) → musculation (construction musculaire)
-        // - Objectif 2 (Réduire poids) → cardio haute intensité (brûler calories)
-        // - Objectif 3 (Atteindre IMC idéal) → tous les types
+        // - Objectif 2 (Reduire poids) → cardio haute intensite (bruler calories)
+        // - Objectif 3 (Atteindre IMC ideal) → tous les types
 
         $types = [];
         $intensites = [];
@@ -48,11 +48,11 @@ class ActiviteModel extends Model
             $types[] = 'musculation'; // Augmenter poids
         }
         if (in_array(2, $objectifIds)) {
-            $types[] = 'cardio'; // Réduire poids
-            $intensites[] = 'haute'; // Haute intensité pour plus de brûlage
+            $types[] = 'cardio'; // Reduire poids
+            $intensites[] = 'haute'; // Haute intensite pour plus de brulage
         }
         if (in_array(3, $objectifIds)) {
-            // Atteindre IMC idéal - afficher toutes les activités
+            // Atteindre IMC ideal - afficher toutes les activites
             return $this->findAll();
         }
 
@@ -66,7 +66,7 @@ class ActiviteModel extends Model
     }
 
     /**
-     * Récupérer les activités actives d'un utilisateur
+     * Recuperer les activites actives d'un utilisateur
      */
     public function getUserActivities($userId)
     {
@@ -83,7 +83,7 @@ class ActiviteModel extends Model
     }
 
     /**
-     * Vérifier si l'utilisateur a déjà cette activité active
+     * Verifier si l'utilisateur a deja cette activite active
      */
     public function hasUserSelectedActivity($userId, $activiteId)
     {
@@ -98,4 +98,5 @@ class ActiviteModel extends Model
         return !empty($result);
     }
 }
+
 

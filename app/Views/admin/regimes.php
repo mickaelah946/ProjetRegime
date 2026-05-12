@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion Régimes - Admin</title>
+    <title>Gestion Regimes - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -94,13 +94,13 @@
             <a href="<?= base_url('admin') ?>">← Retour Dashboard</a>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Déconnexion</button>
+                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Deconnexion</button>
             </form>
         </div>
     </div>
 
     <div class="container-custom">
-        <h1 class="page-title">🥗 Gestion des Régimes</h1>
+        <h1 class="page-title">🥗 Gestion des Regimes</h1>
 
         <a href="<?= base_url('admin') ?>" class="btn-back">← Retour</a>
 
@@ -113,7 +113,7 @@
         <?php endif; ?>
 
         <div class="card-form">
-            <h3 style="margin-bottom: 20px;"><?= isset($editingRegime) && $editingRegime ? 'Modifier le régime' : 'Ajouter un régime' ?></h3>
+            <h3 style="margin-bottom: 20px;"><?= isset($editingRegime) && $editingRegime ? 'Modifier le regime' : 'Ajouter un regime' ?></h3>
             <form method="POST" action="<?= base_url('admin/regimes/save') ?>" class="row g-3">
                 <?= csrf_field() ?>
                 <input type="hidden" name="id" value="<?= esc($editingRegime['id'] ?? '') ?>">
@@ -136,7 +136,7 @@
                     <textarea name="description" class="form-control" rows="3"><?= esc(old('description', $editingRegime['description'] ?? '')) ?></textarea>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Durée (jours)</label>
+                    <label class="form-label">Duree (jours)</label>
                     <input type="number" name="duree_jours" class="form-control" value="<?= esc(old('duree_jours', $editingRegime['duree_jours'] ?? '')) ?>" required>
                 </div>
                 <div class="col-md-3">
@@ -164,7 +164,7 @@
                     <input type="number" name="pourcentage_volaille" class="form-control" value="<?= esc(old('pourcentage_volaille', $editingRegime['pourcentage_volaille'] ?? '0')) ?>" required>
                 </div>
                 <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-dark"><?= isset($editingRegime) && $editingRegime ? 'Mettre à jour' : 'Ajouter' ?></button>
+                    <button type="submit" class="btn btn-dark"><?= isset($editingRegime) && $editingRegime ? 'Mettre a jour' : 'Ajouter' ?></button>
                     <?php if (isset($editingRegime) && $editingRegime): ?>
                         <a href="<?= base_url('admin/regimes') ?>" class="btn btn-outline-secondary">Annuler</a>
                     <?php endif; ?>
@@ -178,7 +178,7 @@
                     <tr>
                         <th>Nom</th>
                         <th>Type</th>
-                        <th>Durée</th>
+                        <th>Duree</th>
                         <th>Prix</th>
                         <th>Variation Poids</th>
                         <th>Viande %</th>
@@ -202,14 +202,14 @@
                             </td>
                             <td><?= $regime['duree_jours'] ?> j</td>
                             <td><?= number_format($regime['prix'], 2) ?>€</td>
-                            <td><?= $regime['poids_variation_min'] ?> à <?= $regime['poids_variation_max'] ?> kg</td>
+                            <td><?= $regime['poids_variation_min'] ?> a <?= $regime['poids_variation_max'] ?> kg</td>
                             <td><?= $regime['pourcentage_viande'] ?>%</td>
                             <td><?= $regime['pourcentage_poisson'] ?>%</td>
                             <td><?= $regime['pourcentage_volaille'] ?>%</td>
                             <td>
                                 <a href="<?= base_url('admin/regimes?edit=' . $regime['id']) ?>" class="btn btn-sm btn-primary">Modifier</a>
                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="collapse" data-bs-target="#tariffs-<?= $regime['id'] ?>">Tarifs</button>
-                                <form method="POST" action="<?= base_url('admin/regimes/delete/' . $regime['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer ce régime ?');">
+                                <form method="POST" action="<?= base_url('admin/regimes/delete/' . $regime['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer ce regime ?');">
                                     <?= csrf_field() ?>
                                     <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                                 </form>
@@ -226,9 +226,9 @@
                                         <table class="table table-sm" style="margin-top: 15px;">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th>Durée</th>
+                                                    <th>Duree</th>
                                                     <th>Prix (€)</th>
-                                                    <th>Réduction %</th>
+                                                    <th>Reduction %</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -239,7 +239,7 @@
                                                         <td><?= number_format($tariff['prix'], 2) ?>€</td>
                                                         <td><?= $tariff['reduction_pourcentage'] ?>%</td>
                                                         <td>
-                                                            <button type="button" class="btn btn-xs btn-warning" data-bs-toggle="modal" data-bs-target="#editTariff<?= $tariff['id'] ?>">Éditer</button>
+                                                            <button type="button" class="btn btn-xs btn-warning" data-bs-toggle="modal" data-bs-target="#editTariff<?= $tariff['id'] ?>">editer</button>
                                                             <form method="POST" action="<?= base_url('admin/regimes/tariff/delete/' . $tariff['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer ce tarif ?');">
                                                                 <?= csrf_field() ?>
                                                                 <button type="submit" class="btn btn-xs btn-danger">Supprimer</button>
@@ -247,7 +247,7 @@
                                                         </td>
                                                     </tr>
 
-                                                    <!-- Modal Édition Tarif -->
+                                                    <!-- Modal edition Tarif -->
                                                     <div class="modal fade" id="editTariff<?= $tariff['id'] ?>" tabindex="-1">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
@@ -266,13 +266,13 @@
                                                                             <input type="number" step="0.01" name="prix" class="form-control" value="<?= $tariff['prix'] ?>" required>
                                                                         </div>
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Réduction (%)</label>
+                                                                            <label class="form-label">Reduction (%)</label>
                                                                             <input type="number" min="0" max="100" name="reduction_pourcentage" class="form-control" value="<?= $tariff['reduction_pourcentage'] ?>">
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                                                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                                                        <button type="submit" class="btn btn-primary">Mettre a jour</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -282,7 +282,7 @@
                                             </tbody>
                                         </table>
                                     <?php else: ?>
-                                        <p style="color: #999; margin-top: 10px;">Aucun tarif défini pour ce régime.</p>
+                                        <p style="color: #999; margin-top: 10px;">Aucun tarif defini pour ce regime.</p>
                                     <?php endif; ?>
 
                                     <!-- Formulaire Ajouter Tarif -->
@@ -292,9 +292,9 @@
                                         <input type="hidden" name="regime_id" value="<?= $regime['id'] ?>">
                                         
                                         <div class="col-md-3">
-                                            <label class="form-label">Durée (jours)</label>
+                                            <label class="form-label">Duree (jours)</label>
                                             <select name="duree_jours" class="form-select" required>
-                                                <option value="">Sélectionner</option>
+                                                <option value="">Selectionner</option>
                                                 <?php 
                                                     $existingDurees = array_column($regime['tariffs'] ?? [], 'duree_jours');
                                                     foreach ([7, 14, 30, 90] as $duree): 
@@ -312,7 +312,7 @@
                                             <input type="number" step="0.01" name="prix" class="form-control" placeholder="0.00" required>
                                         </div>
                                         <div class="col-md-3">
-                                            <label class="form-label">Réduction (%)</label>
+                                            <label class="form-label">Reduction (%)</label>
                                             <input type="number" min="0" max="100" name="reduction_pourcentage" class="form-control" placeholder="0" value="0">
                                         </div>
                                         <div class="col-md-3 d-flex align-items-end">
@@ -328,10 +328,11 @@
         </div>
 
         <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
-            <small style="color: #999;">Total: <?= count($regimes) ?> régimes</small>
+            <small style="color: #999;">Total: <?= count($regimes) ?> regimes</small>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

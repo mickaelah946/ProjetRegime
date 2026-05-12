@@ -214,7 +214,7 @@
             <span>Bienvenue, <?= htmlspecialchars(session()->get('nom')) ?> !</span>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" class="btn-logout">Déconnexion</button>
+                <button type="submit" class="btn-logout">Deconnexion</button>
             </form>
         </div>
     </div>
@@ -232,18 +232,18 @@
                 </div>
             </div>
             <div class="stat-card green">
-                <div class="stat-label">Régimes</div>
+                <div class="stat-label">Regimes</div>
                 <div class="stat-number"><?= $stats['total_regimes'] ?></div>
             </div>
             <div class="stat-card orange">
-                <div class="stat-label">Activités</div>
+                <div class="stat-label">Activites</div>
                 <div class="stat-number"><?= $stats['total_activites'] ?></div>
             </div>
             <div class="stat-card red">
                 <div class="stat-label">Codes Portefeuille</div>
                 <div class="stat-number"><?= $stats['total_codes'] ?></div>
                 <div style="font-size: 0.9rem; color: #e74c3c;">
-                    <?= $stats['codes_utilises'] ?> utilisés
+                    <?= $stats['codes_utilises'] ?> utilises
                 </div>
             </div>
             <div class="stat-card purple">
@@ -262,9 +262,9 @@
                 </div>
             </div>
 
-            <!-- Bar Chart: Régimes populaires -->
+            <!-- Bar Chart: Regimes populaires -->
             <div class="chart-card">
-                <div class="chart-title">🥗 Régimes Populaires</div>
+                <div class="chart-title">🥗 Regimes Populaires</div>
                 <div class="chart-container">
                     <canvas id="chartRegimes"></canvas>
                 </div>
@@ -280,37 +280,37 @@
         </div>
 
         <!-- MENU DE GESTION -->
-        <div class="section-title">🔧 Gestion du Système</div>
+        <div class="section-title">🔧 Gestion du Systeme</div>
         <div class="admin-menu">
             <a href="<?= base_url('admin/users') ?>" class="menu-card">
                 <div class="menu-icon">👥</div>
                 <div class="menu-title">Utilisateurs</div>
-                <div class="menu-description">Gérer les utilisateurs et leurs comptes</div>
+                <div class="menu-description">Gerer les utilisateurs et leurs comptes</div>
             </a>
             <a href="<?= base_url('admin/regimes') ?>" class="menu-card">
                 <div class="menu-icon">🥗</div>
-                <div class="menu-title">Régimes</div>
-                <div class="menu-description">Créer, modifier et supprimer les régimes</div>
+                <div class="menu-title">Regimes</div>
+                <div class="menu-description">Creer, modifier et supprimer les regimes</div>
             </a>
             <a href="<?= base_url('admin/activites') ?>" class="menu-card">
                 <div class="menu-icon">💪</div>
-                <div class="menu-title">Activités</div>
-                <div class="menu-description">Gérer les activités physiques</div>
+                <div class="menu-title">Activites</div>
+                <div class="menu-description">Gerer les activites physiques</div>
             </a>
             <a href="<?= base_url('admin/codes') ?>" class="menu-card">
                 <div class="menu-icon">🎟️</div>
                 <div class="menu-title">Codes Promo</div>
-                <div class="menu-description">Créer et gérer les codes portefeuille</div>
+                <div class="menu-description">Creer et gerer les codes portefeuille</div>
             </a>
             <a href="<?= base_url('admin/cross-tab') ?>" class="menu-card">
                 <div class="menu-icon">📊</div>
-                <div class="menu-title">Tableau Croisé</div>
-                <div class="menu-description">Voir les utilisateurs vs régimes/activités</div>
+                <div class="menu-title">Tableau Croise</div>
+                <div class="menu-description">Voir les utilisateurs vs regimes/activites</div>
             </a>
             <a href="<?= base_url('admin/parametres') ?>" class="menu-card">
                 <div class="menu-icon">⚙️</div>
-                <div class="menu-title">Paramètres</div>
-                <div class="menu-description">Gérer les valeurs système de l'application</div>
+                <div class="menu-title">Parametres</div>
+                <div class="menu-description">Gerer les valeurs systeme de l'application</div>
             </a>
             <a href="<?= base_url('dashboard') ?>" class="menu-card">
                 <div class="menu-icon">🔄</div>
@@ -319,7 +319,7 @@
             </a>
         </div>
 
-        <!-- DONNÉES RÉCENTES -->
+        <!-- DONNeES ReCENTES -->
         <div class="section-title">📋 Derniers Utilisateurs</div>
         <div class="recent-list">
             <?php if (!empty($derniers_users)): ?>
@@ -348,13 +348,13 @@
 
         <?php if (!empty($regimes_populaires)): ?>
             <div style="margin-top: 40px;">
-                <div class="section-title">⭐ Régimes Populaires</div>
+                <div class="section-title">⭐ Regimes Populaires</div>
                 <div class="recent-list">
                     <?php foreach ($regimes_populaires as $regime): ?>
                         <div class="recent-item">
                             <strong><?= htmlspecialchars($regime['nom']) ?></strong>
                             <span style="background: #3498db; color: white; padding: 5px 12px; border-radius: 20px; font-weight: 600;">
-                                <?= $regime['count'] ?> sélections
+                                <?= $regime['count'] ?> selections
                             </span>
                         </div>
                     <?php endforeach; ?>
@@ -402,14 +402,14 @@
             }
         });
 
-        // 2. Bar Chart: Régimes Populaires
+        // 2. Bar Chart: Regimes Populaires
         const ctxRegimes = document.getElementById('chartRegimes').getContext('2d');
         new Chart(ctxRegimes, {
             type: 'bar',
             data: {
                 labels: <?= json_encode($chartRegimes['labels']) ?>,
                 datasets: [{
-                    label: 'Sélections',
+                    label: 'Selections',
                     data: <?= json_encode($chartRegimes['data']) ?>,
                     backgroundColor: [
                         '#3498db',
@@ -487,3 +487,4 @@
     </script>
 </body>
 </html>
+

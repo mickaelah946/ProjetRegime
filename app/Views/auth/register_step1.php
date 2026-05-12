@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription Étape 1 - RegimeApp</title>
+    <title>Inscription etape 1 - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -113,7 +113,7 @@
     <div class="register-container">
         <div class="register-header">
             <h2>🍽️ RegimeApp</h2>
-            <p class="text-muted">Créez votre compte</p>
+            <p class="text-muted">Creez votre compte</p>
         </div>
 
         <!-- Step Indicator -->
@@ -124,7 +124,7 @@
             </div>
             <div class="step-item">
                 <div class="step-number">2</div>
-                <p>Santé</p>
+                <p>Sante</p>
             </div>
         </div>
 
@@ -197,7 +197,7 @@
             <div class="form-group">
                 <label for="genre" class="form-label">Genre</label>
                 <select class="form-control" id="genre" name="genre" required>
-                    <option value="">-- Sélectionner --</option>
+                    <option value="">-- Selectionner --</option>
                     <option value="M" <?= old('genre') === 'M' ? 'selected' : '' ?>>Homme</option>
                     <option value="F" <?= old('genre') === 'F' ? 'selected' : '' ?>>Femme</option>
                 </select>
@@ -210,7 +210,7 @@
                     class="form-control" 
                     id="password" 
                     name="password" 
-                    placeholder="Minimum 6 caractères"
+                    placeholder="Minimum 6 caracteres"
                     required
                 >
             </div>
@@ -227,12 +227,13 @@
                 >
             </div>
 
-            <button type="submit" class="btn-next">Continuer vers étape 2 →</button>
+            <button type="submit" class="btn-next">Continuer vers etape 2 →</button>
         </form>
 
         <div class="register-footer">
-            <p>Déjà inscrit ? <a href="<?= base_url('login') ?>">Se connecter</a></p>
+            <p>Deja inscrit ? <a href="<?= base_url('login') ?>">Se connecter</a></p>
         </div>
     </div>
 </body>
 </html>
+

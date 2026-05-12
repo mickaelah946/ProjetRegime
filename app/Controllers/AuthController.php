@@ -18,7 +18,7 @@ class AuthController extends BaseController
     // ============================================
     public function login()
     {
-        // Si déjà connecté, rediriger au dashboard
+        // Si deja connecte, rediriger au dashboard
         if (session()->get('isLoggedIn')) {
             return redirect()->to('/dashboard');
         }
@@ -33,9 +33,9 @@ class AuthController extends BaseController
 
         $user = $this->userModel->where('username', $username)->first();
 
-        // Vérification sécurisée avec password_verify()
+        // Verification securisee avec password_verify()
         if ($user && password_verify($password, $user['password_hash'])) {
-            // Connexion réussie
+            // Connexion reussie
             session()->set([
                 'user_id'    => $user['id'],
                 'username'   => $user['username'],
@@ -45,9 +45,9 @@ class AuthController extends BaseController
                 'isLoggedIn' => true,
             ]);
 
-            return redirect()->to('/dashboard')->with('success', 'Connexion réussie !');
+            return redirect()->to('/dashboard')->with('success', 'Connexion reussie !');
         } else {
-            // Connexion échouée
+            // Connexion echouee
             return redirect()->back()->with('error', 'Identifiants incorrects !');
         }
     }
@@ -55,7 +55,7 @@ class AuthController extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login')->with('success', 'Déconnexion réussie !');
+        return redirect()->to('/login')->with('success', 'Deconnexion reussie !');
     }
 
     // ============================================
@@ -63,7 +63,7 @@ class AuthController extends BaseController
     // ============================================
     public function registerStep1()
     {
-        // Si déjà connecté, rediriger
+        // Si deja connecte, rediriger
         if (session()->get('isLoggedIn')) {
             return redirect()->to('/dashboard');
         }
@@ -95,17 +95,17 @@ class AuthController extends BaseController
             'temp_password' => $this->request->getPost('password'), // ⚠️ DEVELOPMENT: mot de passe en clair
         ]);
 
-        return redirect()->to('/register/step2')->with('success', 'Étape 1 complétée !');
+        return redirect()->to('/register/step2')->with('success', 'etape 1 completee !');
     }
 
     // ============================================
-    // REGISTRATION - STEP 2 (Infos santé)
+    // REGISTRATION - STEP 2 (Infos sante)
     // ============================================
     public function registerStep2()
     {
-        // Vérifier que step 1 est complétée
+        // Verifier que step 1 est completee
         if (!session()->get('temp_username')) {
-            return redirect()->to('/register/step1')->with('error', 'Veuillez d\'abord compléter l\'étape 1');
+            return redirect()->to('/register/step1')->with('error', 'Veuillez d\'abord completer l\'etape 1');
         }
 
         return view('auth/register_step2');
@@ -113,9 +113,9 @@ class AuthController extends BaseController
 
     public function saveStep2()
     {
-        // Vérifier que step 1 est complétée
+        // Verifier que step 1 est completee
         if (!session()->get('temp_username')) {
-            return redirect()->to('/register/step1')->with('error', 'Session expirée, recommencez');
+            return redirect()->to('/register/step1')->with('error', 'Session expiree, recommencez');
         }
 
         $rules = [
@@ -127,7 +127,7 @@ class AuthController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Récupérer les données de session
+        // Recuperer les donnees de session
         $userData = [
             'nom'           => session()->get('temp_nom'),
             'email'         => session()->get('temp_email'),
@@ -139,14 +139,15 @@ class AuthController extends BaseController
             'role'          => 'user',
         ];
 
-        // Créer l'utilisateur
+        // Creer l'utilisateur
         if ($this->userModel->insert($userData)) {
             // Effacer la session temporaire
             session()->remove(['temp_nom', 'temp_email', 'temp_username', 'temp_genre', 'temp_password']);
 
-            return redirect()->to('/login')->with('success', 'Inscription réussie ! Veuillez vous connecter.');
+            return redirect()->to('/login')->with('success', 'Inscription reussie ! Veuillez vous connecter.');
         } else {
             return redirect()->back()->with('error', 'Erreur lors de l\'inscription');
         }
     }
 }
+

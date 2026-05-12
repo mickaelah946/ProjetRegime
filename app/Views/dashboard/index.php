@@ -224,7 +224,7 @@
                 <span class="text-white me-4">Bienvenue, <?= htmlspecialchars($user['nom']) ?></span>
                 <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                     <?= csrf_field() ?>
-                    <button type="submit" class="btn btn-light btn-sm" style="border: none; cursor: pointer;">Déconnexion</button>
+                    <button type="submit" class="btn btn-light btn-sm" style="border: none; cursor: pointer;">Deconnexion</button>
                 </form>
             </div>
         </div>
@@ -319,8 +319,8 @@
                     </div>
                     <a href="<?= base_url('dashboard/select-objectifs') ?>" class="btn btn-secondary">Modifier</a>
                 <?php else: ?>
-                    <p class="mb-3">Commencez par sélectionner vos objectifs.</p>
-                    <a href="<?= base_url('dashboard/select-objectifs') ?>" class="btn btn-main">Sélectionner un objectif</a>
+                    <p class="mb-3">Commencez par selectionner vos objectifs.</p>
+                    <a href="<?= base_url('dashboard/select-objectifs') ?>" class="btn btn-main">Selectionner un objectif</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -332,9 +332,9 @@
                     🏆 Option Gold
                 </div>
                 <div class="card-body" style="text-align: center;">
-                    <p>Obtenez <strong>15% de remise</strong> sur tous les régimes</p>
+                    <p>Obtenez <strong>15% de remise</strong> sur tous les regimes</p>
                     <p style="font-size: 2rem; font-weight: 700; color: #f39c12; margin: 15px 0;">9.99€</p>
-                    <p style="color: #999; margin-bottom: 20px;">Une seule fois, illimité</p>
+                    <p style="color: #999; margin-bottom: 20px;">Une seule fois, illimite</p>
                     <form method="POST" action="<?= base_url('dashboard/buy-gold') ?>">
                         <?= csrf_field() ?>
                         <button type="submit" class="btn btn-main">Acheter Option Gold</button>
@@ -350,10 +350,10 @@
             </div>
             <div class="card-body">
                 <div class="actions-grid">
-                    <a href="<?= base_url('regime/browse') ?>" class="action-btn">🥗 Voir régimes</a>
-                    <a href="<?= base_url('regime/active') ?>" class="action-btn">📊 Mes régimes</a>
-                    <a href="<?= base_url('activity/browse') ?>" class="action-btn">💪 Voir activités</a>
-                    <a href="<?= base_url('activity/active') ?>" class="action-btn">🏃 Mes activités</a>
+                    <a href="<?= base_url('regime/browse') ?>" class="action-btn">🥗 Voir regimes</a>
+                    <a href="<?= base_url('regime/active') ?>" class="action-btn">📊 Mes regimes</a>
+                    <a href="<?= base_url('activity/browse') ?>" class="action-btn">💪 Voir activites</a>
+                    <a href="<?= base_url('activity/active') ?>" class="action-btn">🏃 Mes activites</a>
                     <a href="<?= base_url('profile/edit') ?>" class="action-btn">✏️ Modifier profil</a>
                     <a href="<?= base_url('pdf/invoice/' . $user['id']) ?>" class="action-btn">📥 Exporter PDF</a>
                 </div>
@@ -373,26 +373,26 @@
             const submitBtn = document.getElementById('submitCodeBtn');
             const alertDiv = document.getElementById('codeFormAlert');
 
-            // Validation côté client
+            // Validation cote client
             if (!code) {
                 showAlert('Veuillez entrer un code', 'danger');
                 return;
             }
 
             if (code.length < 3) {
-                showAlert('Le code doit contenir au moins 3 caractères', 'danger');
+                showAlert('Le code doit contenir au moins 3 caracteres', 'danger');
                 return;
             }
 
-            // Désactiver le bouton pendant l'envoi
+            // Desactiver le bouton pendant l'envoi
             submitBtn.disabled = true;
             submitBtn.textContent = '⏳ Validation...';
 
             try {
-                // Récupérer le token CSRF
+                // Recuperer le token CSRF
                 const csrfToken = document.querySelector('input[name="<?= csrf_token() ?>"]').value;
 
-                // Envoyer la requête AJAX
+                // Envoyer la requete AJAX
                 const response = await fetch('<?= base_url('api/validate-code') ?>', {
                     method: 'POST',
                     headers: {
@@ -409,11 +409,11 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    // Succès
+                    // Succes
                     showAlert('✓ ' + data.message, 'success');
                     codeInput.value = '';
                     
-                    // Mettre à jour le solde en temps réel
+                    // Mettre a jour le solde en temps reel
                     document.getElementById('walletBalance').textContent = 
                         data.newBalance.toFixed(2) + '€';
                     
@@ -431,9 +431,9 @@
                 }
             } catch (error) {
                 console.error('Erreur AJAX:', error);
-                showAlert('Une erreur est survenue. Veuillez réessayer.', 'danger');
+                showAlert('Une erreur est survenue. Veuillez reessayer.', 'danger');
             } finally {
-                // Réactiver le bouton
+                // Reactiver le bouton
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Valider';
             }
@@ -450,7 +450,7 @@
             `;
             alertDiv.style.display = 'block';
 
-            // Auto-dismiss après 5 secondes
+            // Auto-dismiss apres 5 secondes
             if (type === 'success') {
                 setTimeout(() => {
                     alertDiv.style.display = 'none';
@@ -465,3 +465,4 @@
     </script>
 </body>
 </html>
+

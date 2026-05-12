@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sélectionner Objectifs - RegimeApp</title>
+    <title>Selectionner Objectifs - RegimeApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -136,7 +136,7 @@
     <div class="container-custom">
         <div class="card">
             <div class="card-header">
-                🎯 Sélectionner vos Objectifs
+                🎯 Selectionner vos Objectifs
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('error')): ?>
@@ -211,3 +211,4 @@
     </script>
 </body>
 </html>
+

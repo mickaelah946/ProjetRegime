@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau Croisé Utilisateurs - Admin</title>
+    <title>Tableau Croise Utilisateurs - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -206,13 +206,13 @@
             <a href="<?= base_url('admin') ?>">← Retour Dashboard</a>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Déconnexion</button>
+                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Deconnexion</button>
             </form>
         </div>
     </div>
 
     <div class="container-custom">
-        <h1 class="page-title">📊 Tableau Croisé Utilisateurs</h1>
+        <h1 class="page-title">📊 Tableau Croise Utilisateurs</h1>
 
         <a href="<?= base_url('admin') ?>" class="btn-back">← Retour Dashboard</a>
 
@@ -220,17 +220,17 @@
         <div class="tabs-section">
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="switchTab('regimes')">
-                    🥗 Régimes Utilisateurs
+                    🥗 Regimes Utilisateurs
                 </button>
                 <button class="tab-btn" onclick="switchTab('activites')">
-                    💪 Activités Utilisateurs
+                    💪 Activites Utilisateurs
                 </button>
             </div>
 
-            <!-- TAB 1: RÉGIMES -->
+            <!-- TAB 1: ReGIMES -->
             <div id="regimes" class="tab-content active">
                 <div class="table-container">
-                    <h3 style="margin-bottom: 15px;">Régimes par Utilisateur</h3>
+                    <h3 style="margin-bottom: 15px;">Regimes par Utilisateur</h3>
                     
                     <div class="legend">
                         <div class="legend-item">
@@ -239,11 +239,11 @@
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #cce5ff;"></div>
-                            <span>Terminé</span>
+                            <span>Termine</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #f8d7da;"></div>
-                            <span>Annulé</span>
+                            <span>Annule</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #e9ecef;"></div>
@@ -279,7 +279,7 @@
                                             <?php elseif ($status === 'termine'): ?>
                                                 <span class="status-termine">✓ Fini</span>
                                             <?php elseif ($status === 'annule'): ?>
-                                                <span class="status-annule">✗ Annulé</span>
+                                                <span class="status-annule">✗ Annule</span>
                                             <?php else: ?>
                                                 <span class="status-none">-</span>
                                             <?php endif; ?>
@@ -292,17 +292,17 @@
 
                     <div style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">
                         <p>
-                            Total: <?= count($users) ?> utilisateurs × <?= count($regimes) ?> régimes
+                            Total: <?= count($users) ?> utilisateurs × <?= count($regimes) ?> regimes
                             = <?= count($users) * count($regimes) ?> croisements
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 2: ACTIVITÉS -->
+            <!-- TAB 2: ACTIVITeS -->
             <div id="activites" class="tab-content">
                 <div class="table-container">
-                    <h3 style="margin-bottom: 15px;">Activités par Utilisateur</h3>
+                    <h3 style="margin-bottom: 15px;">Activites par Utilisateur</h3>
                     
                     <div class="legend">
                         <div class="legend-item">
@@ -311,11 +311,11 @@
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #cce5ff;"></div>
-                            <span>Terminé</span>
+                            <span>Termine</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #f8d7da;"></div>
-                            <span>Annulé</span>
+                            <span>Annule</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color" style="background: #e9ecef;"></div>
@@ -351,7 +351,7 @@
                                             <?php elseif ($status === 'termine'): ?>
                                                 <span class="status-termine">✓ Fini</span>
                                             <?php elseif ($status === 'annule'): ?>
-                                                <span class="status-annule">✗ Annulé</span>
+                                                <span class="status-annule">✗ Annule</span>
                                             <?php else: ?>
                                                 <span class="status-none">-</span>
                                             <?php endif; ?>
@@ -364,7 +364,7 @@
 
                     <div style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">
                         <p>
-                            Total: <?= count($users) ?> utilisateurs × <?= count($activites) ?> activités
+                            Total: <?= count($users) ?> utilisateurs × <?= count($activites) ?> activites
                             = <?= count($users) * count($activites) ?> croisements
                         </p>
                     </div>
@@ -383,17 +383,18 @@
                 tab.classList.remove('active');
             });
 
-            // Désactiver tous les boutons
+            // Desactiver tous les boutons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
-            // Afficher le tab sélectionné
+            // Afficher le tab selectionne
             document.getElementById(tabName).classList.add('active');
 
-            // Activer le bouton cliqué
+            // Activer le bouton clique
             event.target.classList.add('active');
         }
     </script>
 </body>
 </html>
+

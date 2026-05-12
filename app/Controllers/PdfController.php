@@ -18,25 +18,25 @@ class PdfController extends BaseController
     }
 
     /**
-     * Générer une facture PDF pour un utilisateur
+     * Generer une facture PDF pour un utilisateur
      */
     public function invoiceUser($userId)
     {
-        // Vérifie que l'utilisateur est connecté
+        // Verifie que l'utilisateur est connecte
         if (!session()->get('isLoggedIn')) {
             return redirect()->to('/login');
         }
 
         if (session()->get('role') !== 'admin' && (int) session()->get('user_id') !== (int) $userId) {
-            return redirect()->to('/dashboard')->with('error', 'Accès non autorisé');
+            return redirect()->to('/dashboard')->with('error', 'Acces non autorise');
         }
 
         $user = $this->userModel->find($userId);
         if (!$user) {
-            return $this->response->setStatusCode(404)->setBody('Utilisateur non trouvé');
+            return $this->response->setStatusCode(404)->setBody('Utilisateur non trouve');
         }
 
-        // Préparation des données
+        // Preparation des donnees
         $data = [
             'user' => $user,
             'generatedAt' => date('d/m/Y H:i:s'),
@@ -45,7 +45,7 @@ class PdfController extends BaseController
         // Rendu HTML
         $html = view('pdf/invoice_user', $data);
 
-        // Création du PDF
+        // Creation du PDF
         $mpdf = new Mpdf([
             'tempDir' => WRITEPATH . 'temp',
             'margin_left' => 15,
@@ -58,27 +58,27 @@ class PdfController extends BaseController
 
         // Retour du PDF
         $filename = 'facture_' . $user['username'] . '_' . date('Y-m-d') . '.pdf';
-        $mpdf->Output($filename, 'D'); // D = téléchargement
+        $mpdf->Output($filename, 'D'); // D = telechargement
     }
 
     /**
-     * Générer un reçu d'achat de régime
+     * Generer un recu d'achat de regime
      */
     public function receiptRegime($regimeId)
     {
-        // Vérifie que l'utilisateur est connecté
+        // Verifie que l'utilisateur est connecte
         if (!session()->get('isLoggedIn')) {
             return redirect()->to('/login');
         }
 
         $regime = $this->regimeModel->find($regimeId);
         if (!$regime) {
-            return $this->response->setStatusCode(404)->setBody('Régime non trouvé');
+            return $this->response->setStatusCode(404)->setBody('Regime non trouve');
         }
 
         $user = $this->userModel->find(session()->get('user_id'));
 
-        // Préparation des données
+        // Preparation des donnees
         $data = [
             'user' => $user,
             'regime' => $regime,
@@ -89,7 +89,7 @@ class PdfController extends BaseController
         // Rendu HTML
         $html = view('pdf/receipt_regime', $data);
 
-        // Création du PDF
+        // Creation du PDF
         $mpdf = new Mpdf([
             'tempDir' => WRITEPATH . 'temp',
             'margin_left' => 15,
@@ -106,20 +106,20 @@ class PdfController extends BaseController
     }
 
     /**
-     * Générer un reçu admin (rapport généraliste)
+     * Generer un recu admin (rapport generaliste)
      */
     public function reportAdmin()
     {
-        // Vérifie que c'est un admin
+        // Verifie que c'est un admin
         if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
-            return redirect()->to('/login')->with('error', 'Accès non autorisé');
+            return redirect()->to('/login')->with('error', 'Acces non autorise');
         }
 
         $totalUsers = $this->userModel->countAllResults();
         $totalRegimes = $this->regimeModel->countAllResults();
         $goldUsers = $this->userModel->where('is_gold', true)->countAllResults();
 
-        // Préparation des données
+        // Preparation des donnees
         $data = [
             'totalUsers' => $totalUsers,
             'totalRegimes' => $totalRegimes,
@@ -130,7 +130,7 @@ class PdfController extends BaseController
         // Rendu HTML
         $html = view('pdf/report_admin', $data);
 
-        // Création du PDF
+        // Creation du PDF
         $mpdf = new Mpdf([
             'tempDir' => WRITEPATH . 'temp',
             'margin_left' => 15,
@@ -146,3 +146,4 @@ class PdfController extends BaseController
         $mpdf->Output($filename, 'D');
     }
 }
+

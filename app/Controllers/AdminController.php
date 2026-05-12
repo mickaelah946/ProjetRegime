@@ -35,7 +35,7 @@ class AdminController extends BaseController
     private function requireAdmin()
     {
         if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
-            return redirect()->to('/login')->with('error', 'Accès non autorisé');
+            return redirect()->to('/login')->with('error', 'Acces non autorise');
         }
 
         return null;
@@ -52,7 +52,7 @@ class AdminController extends BaseController
 
         $db = Database::connect();
 
-        // Statistiques générales
+        // Statistiques generales
         $stats = [
             'total_users' => $this->userModel->countAllResults(),
             'total_regimes' => $this->regimeModel->countAllResults(),
@@ -69,7 +69,7 @@ class AdminController extends BaseController
         // Derniers utilisateurs
         $derniers_users = $this->userModel->orderBy('created_at', 'DESC')->limit(5)->findAll();
 
-        // Régimes populaires
+        // Regimes populaires
         $regimes_populaires = $db->table('user_regimes')
                                  ->select('regimes.nom, COUNT(user_regimes.id) as count')
                                  ->join('regimes', 'regimes.id = user_regimes.regime_id')
@@ -91,7 +91,7 @@ class AdminController extends BaseController
             'colors' => ['#f39c12', '#95a5a6'],
         ];
 
-        // 2. Bar Chart: Régimes by count
+        // 2. Bar Chart: Regimes by count
         $regimesChartData = [];
         $regimesChartLabels = [];
         foreach ($regimes_populaires as $regime) {
@@ -160,11 +160,11 @@ class AdminController extends BaseController
 
         $this->userModel->delete($id);
 
-        return redirect()->to('/admin/users')->with('success', 'Utilisateur supprimé avec succès');
+        return redirect()->to('/admin/users')->with('success', 'Utilisateur supprime avec succes');
     }
 
     /**
-     * Liste des régimes
+     * Liste des regimes
      */
     public function regimes()
     {
@@ -176,7 +176,7 @@ class AdminController extends BaseController
         $editingRegime = $editId ? $this->regimeModel->find($editId) : null;
         $regimes = $this->regimeModel->orderBy('created_at', 'DESC')->findAll();
         
-        // Ajoute les tarifs pour chaque régime
+        // Ajoute les tarifs pour chaque regime
         $regimesWithTariffs = [];
         foreach ($regimes as $regime) {
             $regime['tariffs'] = $this->tarifModel->getByRegime($regime['id']);
@@ -211,7 +211,7 @@ class AdminController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('error', 'Veuillez corriger les champs du régime');
+            return redirect()->back()->withInput()->with('error', 'Veuillez corriger les champs du regime');
         }
 
         $data = [
@@ -229,13 +229,13 @@ class AdminController extends BaseController
 
         if ($id) {
             $this->regimeModel->update($id, $data);
-            return redirect()->to('/admin/regimes')->with('success', 'Régime modifié avec succès');
+            return redirect()->to('/admin/regimes')->with('success', 'Regime modifie avec succes');
         }
 
         $this->regimeModel->insert($data);
         $this->tarifModel->initializeTariffs($this->regimeModel->getInsertID(), $data['prix']);
 
-        return redirect()->to('/admin/regimes')->with('success', 'Régime ajouté avec succès');
+        return redirect()->to('/admin/regimes')->with('success', 'Regime ajoute avec succes');
     }
 
     public function deleteRegime($id)
@@ -246,11 +246,11 @@ class AdminController extends BaseController
 
         $this->regimeModel->delete($id);
 
-        return redirect()->to('/admin/regimes')->with('success', 'Régime supprimé avec succès');
+        return redirect()->to('/admin/regimes')->with('success', 'Regime supprime avec succes');
     }
 
     /**
-     * Liste des activités
+     * Liste des activites
      */
     public function activites()
     {
@@ -287,7 +287,7 @@ class AdminController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('error', 'Veuillez corriger les champs de l’activité');
+            return redirect()->back()->withInput()->with('error', 'Veuillez corriger les champs de l’activite');
         }
 
         $data = [
@@ -302,12 +302,12 @@ class AdminController extends BaseController
 
         if ($id) {
             $this->activiteModel->update($id, $data);
-            return redirect()->to('/admin/activites')->with('success', 'Activité modifiée avec succès');
+            return redirect()->to('/admin/activites')->with('success', 'Activite modifiee avec succes');
         }
 
         $this->activiteModel->insert($data);
 
-        return redirect()->to('/admin/activites')->with('success', 'Activité ajoutée avec succès');
+        return redirect()->to('/admin/activites')->with('success', 'Activite ajoutee avec succes');
     }
 
     public function deleteActivite($id)
@@ -318,7 +318,7 @@ class AdminController extends BaseController
 
         $this->activiteModel->delete($id);
 
-        return redirect()->to('/admin/activites')->with('success', 'Activité supprimée avec succès');
+        return redirect()->to('/admin/activites')->with('success', 'Activite supprimee avec succes');
     }
 
     /**
@@ -373,7 +373,7 @@ class AdminController extends BaseController
 
         if ($id) {
             $this->codeModel->update($id, $data);
-            return redirect()->to('/admin/codes')->with('success', 'Code modifié avec succès');
+            return redirect()->to('/admin/codes')->with('success', 'Code modifie avec succes');
         }
 
         $data['utilisateur_id'] = null;
@@ -381,7 +381,7 @@ class AdminController extends BaseController
 
         $this->codeModel->insert($data);
 
-        return redirect()->to('/admin/codes')->with('success', 'Code ajouté avec succès');
+        return redirect()->to('/admin/codes')->with('success', 'Code ajoute avec succes');
     }
 
     public function deleteCode($id)
@@ -392,7 +392,7 @@ class AdminController extends BaseController
 
         $this->codeModel->delete($id);
 
-        return redirect()->to('/admin/codes')->with('success', 'Code supprimé avec succès');
+        return redirect()->to('/admin/codes')->with('success', 'Code supprime avec succes');
     }
 
     public function toggleCode($id)
@@ -407,12 +407,12 @@ class AdminController extends BaseController
         }
 
         if (!empty($code['utilisateur_id'])) {
-            return redirect()->to('/admin/codes')->with('error', 'Impossible de réactiver un code déjà utilisé');
+            return redirect()->to('/admin/codes')->with('error', 'Impossible de reactiver un code deja utilise');
         }
 
         $this->codeModel->update($id, ['valide' => !$code['valide']]);
 
-        return redirect()->to('/admin/codes')->with('success', 'Statut du code mis à jour');
+        return redirect()->to('/admin/codes')->with('success', 'Statut du code mis a jour');
     }
 
     public function parametres()
@@ -445,11 +445,11 @@ class AdminController extends BaseController
 
         if ($id) {
             $this->parametreModel->update($id, $data);
-            return redirect()->to('/admin/parametres')->with('success', 'Paramètre modifié avec succès');
+            return redirect()->to('/admin/parametres')->with('success', 'Parametre modifie avec succes');
         }
 
         $this->parametreModel->insert($data);
-        return redirect()->to('/admin/parametres')->with('success', 'Paramètre ajouté avec succès');
+        return redirect()->to('/admin/parametres')->with('success', 'Parametre ajoute avec succes');
     }
 
     public function deleteParametre($id)
@@ -460,16 +460,16 @@ class AdminController extends BaseController
 
         $this->parametreModel->delete($id);
 
-        return redirect()->to('/admin/parametres')->with('success', 'Paramètre supprimé avec succès');
+        return redirect()->to('/admin/parametres')->with('success', 'Parametre supprime avec succes');
     }
 
     /**
-     * API : Récupère les tarifs d'un régime (AJAX)
+     * API : Recupere les tarifs d'un regime (AJAX)
      */
     public function getTariffs($regimeId)
     {
         if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
-            return $this->response->setStatusCode(403)->setJSON(['error' => 'Accès non autorisé']);
+            return $this->response->setStatusCode(403)->setJSON(['error' => 'Acces non autorise']);
         }
 
         $tariffs = $this->tarifModel->getByRegime($regimeId);
@@ -477,7 +477,7 @@ class AdminController extends BaseController
     }
 
     /**
-     * Sauvegarde/mise à jour d'un tarif
+     * Sauvegarde/mise a jour d'un tarif
      */
     public function saveTariff()
     {
@@ -498,7 +498,7 @@ class AdminController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('error', 'Veuillez vérifier les champs du tarif');
+            return redirect()->back()->withInput()->with('error', 'Veuillez verifier les champs du tarif');
         }
 
         // Cherche si le tarif existe
@@ -515,11 +515,11 @@ class AdminController extends BaseController
 
         if ($existing) {
             $this->tarifModel->update($existing['id'], $data);
-            return redirect()->back()->with('success', 'Tarif modifié avec succès');
+            return redirect()->back()->with('success', 'Tarif modifie avec succes');
         }
 
         $this->tarifModel->insert($data);
-        return redirect()->back()->with('success', 'Tarif ajouté avec succès');
+        return redirect()->back()->with('success', 'Tarif ajoute avec succes');
     }
 
     /**
@@ -532,11 +532,11 @@ class AdminController extends BaseController
         }
 
         $this->tarifModel->delete($tarifId);
-        return redirect()->back()->with('success', 'Tarif supprimé avec succès');
+        return redirect()->back()->with('success', 'Tarif supprime avec succes');
     }
 
     /**
-     * Tableau croisé : Utilisateurs vs Régimes vs Activités
+     * Tableau croise : Utilisateurs vs Regimes vs Activites
      */
     public function crossTabUsers()
     {
@@ -546,25 +546,25 @@ class AdminController extends BaseController
 
         $db = Database::connect();
 
-        // Récupérer tous les utilisateurs (sauf admin)
+        // Recuperer tous les utilisateurs (sauf admin)
         $users = $this->userModel->where('role', 'user')
                                  ->orderBy('nom', 'ASC')
                                  ->findAll();
 
-        // Récupérer tous les régimes
+        // Recuperer tous les regimes
         $regimes = $this->regimeModel->orderBy('nom', 'ASC')->findAll();
 
-        // Récupérer tous les activités
+        // Recuperer tous les activites
         $activites = $this->activiteModel->orderBy('nom', 'ASC')->findAll();
 
-        // Construire un tableau croisé : user_id => regime_id => statut
+        // Construire un tableau croise : user_id => regime_id => statut
         $crossTabRegimes = [];
         $crossTabActivites = [];
 
         foreach ($users as $user) {
             $userId = $user['id'];
             
-            // Régimes de cet utilisateur
+            // Regimes de cet utilisateur
             $userRegimes = $db->table('user_regimes')
                              ->where('user_id', $userId)
                              ->get()
@@ -582,7 +582,7 @@ class AdminController extends BaseController
                 $crossTabRegimes[$userId][$regime['id']] = $found;
             }
 
-            // Activités de cet utilisateur
+            // Activites de cet utilisateur
             $userActivites = $db->table('user_activites')
                                ->where('user_id', $userId)
                                ->get()
@@ -612,3 +612,4 @@ class AdminController extends BaseController
         return view('admin/cross_tab_users', $data);
     }
 }
+

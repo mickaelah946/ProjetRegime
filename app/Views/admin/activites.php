@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion Activités - Admin</title>
+    <title>Gestion Activites - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -94,13 +94,13 @@
             <a href="<?= base_url('admin') ?>">← Retour Dashboard</a>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Déconnexion</button>
+                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Deconnexion</button>
             </form>
         </div>
     </div>
 
     <div class="container-custom">
-        <h1 class="page-title">💪 Gestion des Activités</h1>
+        <h1 class="page-title">💪 Gestion des Activites</h1>
 
         <a href="<?= base_url('admin') ?>" class="btn-back">← Retour</a>
 
@@ -113,7 +113,7 @@
         <?php endif; ?>
 
         <div class="card-form">
-            <h3 style="margin-bottom: 20px;"><?= isset($editingActivite) && $editingActivite ? 'Modifier l’activité' : 'Ajouter une activité' ?></h3>
+            <h3 style="margin-bottom: 20px;"><?= isset($editingActivite) && $editingActivite ? 'Modifier l’activite' : 'Ajouter une activite' ?></h3>
             <form method="POST" action="<?= base_url('admin/activites/save') ?>" class="row g-3">
                 <?= csrf_field() ?>
                 <input type="hidden" name="id" value="<?= esc($editingActivite['id'] ?? '') ?>">
@@ -133,7 +133,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Intensité</label>
+                    <label class="form-label">Intensite</label>
                     <?php $selectedIntensite = old('intensite', $editingActivite['intensite'] ?? 'moyenne'); ?>
                     <select name="intensite" class="form-select" required>
                         <option value="basse" <?= $selectedIntensite === 'basse' ? 'selected' : '' ?>>Basse</option>
@@ -146,11 +146,11 @@
                     <textarea name="description" class="form-control" rows="3"><?= esc(old('description', $editingActivite['description'] ?? '')) ?></textarea>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Durée (jours)</label>
+                    <label class="form-label">Duree (jours)</label>
                     <input type="number" name="duree_jours" class="form-control" value="<?= esc(old('duree_jours', $editingActivite['duree_jours'] ?? '')) ?>" required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Calories brûlées</label>
+                    <label class="form-label">Calories brulees</label>
                     <input type="number" name="calories_brulees" class="form-control" value="<?= esc(old('calories_brulees', $editingActivite['calories_brulees'] ?? '')) ?>" required>
                 </div>
                 <div class="col-md-3">
@@ -158,7 +158,7 @@
                     <input type="number" step="0.01" name="prix" class="form-control" value="<?= esc(old('prix', $editingActivite['prix'] ?? '')) ?>" required>
                 </div>
                 <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-dark"><?= isset($editingActivite) && $editingActivite ? 'Mettre à jour' : 'Ajouter' ?></button>
+                    <button type="submit" class="btn btn-dark"><?= isset($editingActivite) && $editingActivite ? 'Mettre a jour' : 'Ajouter' ?></button>
                     <?php if (isset($editingActivite) && $editingActivite): ?>
                         <a href="<?= base_url('admin/activites') ?>" class="btn btn-outline-secondary">Annuler</a>
                     <?php endif; ?>
@@ -172,9 +172,9 @@
                     <tr>
                         <th>Nom</th>
                         <th>Type</th>
-                        <th>Intensité</th>
-                        <th>Durée</th>
-                        <th>Calories Brûlées</th>
+                        <th>Intensite</th>
+                        <th>Duree</th>
+                        <th>Calories Brulees</th>
                         <th>Prix</th>
                         <th>Actions</th>
                     </tr>
@@ -211,7 +211,7 @@
                             <td><?= number_format($activite['prix'], 2) ?>€</td>
                             <td>
                                 <a href="<?= base_url('admin/activites?edit=' . $activite['id']) ?>" class="btn btn-sm btn-primary">Modifier</a>
-                                <form method="POST" action="<?= base_url('admin/activites/delete/' . $activite['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer cette activité ?');">
+                                <form method="POST" action="<?= base_url('admin/activites/delete/' . $activite['id']) ?>" style="display:inline;" onsubmit="return confirm('Supprimer cette activite ?');">
                                     <?= csrf_field() ?>
                                     <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                                 </form>
@@ -223,10 +223,11 @@
         </div>
 
         <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
-            <small style="color: #999;">Total: <?= count($activites) ?> activités</small>
+            <small style="color: #999;">Total: <?= count($activites) ?> activites</small>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

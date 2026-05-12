@@ -27,7 +27,7 @@ class RegimeController extends BaseController
     }
 
     /**
-     * Afficher les régimes recommandés
+     * Afficher les regimes recommandes
      */
     public function browse()
     {
@@ -40,10 +40,10 @@ class RegimeController extends BaseController
             $user = $this->userModel->find($userId);
 
             if (!$user) {
-                return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+                return redirect()->to('/login')->with('error', 'Utilisateur non trouve');
             }
 
-            // Récupérer les régimes recommandés
+            // Recuperer les regimes recommandes
             $regimes = $this->regimeModel->getRecommendedRegimes($userId);
             $userRegimes = $this->regimeModel->getUserRegimes($userId);
             $userObjectifs = $this->objectifModel->getUserObjectifs($userId);
@@ -57,7 +57,7 @@ class RegimeController extends BaseController
                 }
                 $regime['already_selected'] = $this->regimeModel->hasUserSelectedRegime($userId, $regime['id']);
                 
-                // Récupérer les tarifs pour ce régime
+                // Recuperer les tarifs pour ce regime
                 $tariffs = $this->tarifModel->getByRegime($regime['id']);
                 $regime['tariffs'] = [];
                 
@@ -88,7 +88,7 @@ class RegimeController extends BaseController
     }
 
     /**
-     * Sélectionner un régime
+     * Selectionner un regime
      */
     public function select($regimeId)
     {
@@ -102,12 +102,12 @@ class RegimeController extends BaseController
             $regime = $this->regimeModel->find($regimeId);
 
             if (!$regime) {
-                return redirect()->back()->with('error', 'Régime non trouvé');
+                return redirect()->back()->with('error', 'Regime non trouve');
             }
 
-            // Vérifier si déjà sélectionné
+            // Verifier si deja selectionne
             if ($this->regimeModel->hasUserSelectedRegime($userId, $regimeId)) {
-                return redirect()->back()->with('error', 'Vous avez déjà ce régime actif');
+                return redirect()->back()->with('error', 'Vous avez deja ce regime actif');
             }
 
             $duree_jours = (int) ($this->request->getPost('duree_jours') ?? $regime['duree_jours']);
@@ -121,12 +121,12 @@ class RegimeController extends BaseController
                 $prix_paye = round($prix_paye * 0.85, 2); // 15% de remise
             }
 
-            // Vérifier le solde
+            // Verifier le solde
             if ($user['solde_portefeuille'] < $prix_paye) {
                 return redirect()->back()->with('error', "Solde insuffisant. Vous avez {$user['solde_portefeuille']}€, il en faut {$prix_paye}€");
             }
 
-            // Insérer le régime pour l'utilisateur
+            // Inserer le regime pour l'utilisateur
             $db = Database::connect();
             $db->table('user_regimes')->insert([
                 'user_id' => $userId,
@@ -137,20 +137,20 @@ class RegimeController extends BaseController
                 'statut' => 'actif',
             ]);
 
-            // Déduire du solde
+            // Deduire du solde
             $newBalance = $user['solde_portefeuille'] - $prix_paye;
             $this->userModel->update($userId, [
                 'solde_portefeuille' => $newBalance,
             ]);
 
-            return redirect()->to('/regime/browse')->with('success', "Régime '{$regime['nom']}' sélectionné ! -{$prix_paye}€");
+            return redirect()->to('/regime/browse')->with('success', "Regime '{$regime['nom']}' selectionne ! -{$prix_paye}€");
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Erreur: ' . $e->getMessage());
         }
     }
 
     /**
-     * Annuler un régime
+     * Annuler un regime
      */
     public function cancel($userRegimeId)
     {
@@ -167,15 +167,15 @@ class RegimeController extends BaseController
                         ->getRowArray();
 
         if (!$userRegime) {
-            return redirect()->back()->with('error', 'Régime non trouvé');
+            return redirect()->back()->with('error', 'Regime non trouve');
         }
 
-        // Mettre à jour le statut
+        // Mettre a jour le statut
         $db->table('user_regimes')->where('id', $userRegimeId)->update([
             'statut' => 'annule'
         ]);
 
-        // Rembourser 50% du prix payé
+        // Rembourser 50% du prix paye
         $remboursement = $userRegime['prix_paye'] * 0.5;
         $user = $this->userModel->find($userId);
         $newBalance = $user['solde_portefeuille'] + $remboursement;
@@ -183,11 +183,11 @@ class RegimeController extends BaseController
             'solde_portefeuille' => $newBalance,
         ]);
 
-        return redirect()->to('/regime/browse')->with('success', "Régime annulé. Remboursement de {$remboursement}€");
+        return redirect()->to('/regime/browse')->with('success', "Regime annule. Remboursement de {$remboursement}€");
     }
 
     /**
-     * Afficher les régimes actifs de l'utilisateur
+     * Afficher les regimes actifs de l'utilisateur
      */
     public function active()
     {
@@ -200,7 +200,7 @@ class RegimeController extends BaseController
             $user = $this->userModel->find($userId);
 
             if (!$user) {
-                return redirect()->to('/login')->with('error', 'Utilisateur non trouvé');
+                return redirect()->to('/login')->with('error', 'Utilisateur non trouve');
             }
 
             $userRegimes = $this->regimeModel->getUserRegimes($userId);
@@ -216,3 +216,4 @@ class RegimeController extends BaseController
         }
     }
 }
+

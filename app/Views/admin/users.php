@@ -84,7 +84,7 @@
             <a href="<?= base_url('admin') ?>">← Retour Dashboard</a>
             <form method="POST" action="<?= base_url('logout') ?>" style="display: inline;">
                 <?= csrf_field() ?>
-                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Déconnexion</button>
+                <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Deconnexion</button>
             </form>
         </div>
     </div>
@@ -101,7 +101,7 @@
                         <th>Nom</th>
                         <th>Email</th>
                         <th>Username</th>
-                        <th>Rôle</th>
+                        <th>Role</th>
                         <th>IMC</th>
                         <th>Solde</th>
                         <th>Gold</th>
@@ -133,7 +133,7 @@
                             </td>
                             <td><?= date('d/m/Y', strtotime($user['created_at'])) ?></td>
                             <td>
-                                <form method="POST" action="<?= base_url('admin/users/delete/'.$user['id']) ?>" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                <form method="POST" action="<?= base_url('admin/users/delete/'.$user['id']) ?>" style="display:inline;" onsubmit="return confirm('etes-vous sur de vouloir supprimer cet utilisateur ?');">
                                     <?= csrf_field() ?>
                                     <button class="btn btn-sm btn-danger">Supprimer</button>
                                 </form>
@@ -152,3 +152,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
